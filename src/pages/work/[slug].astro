@@ -26,9 +26,28 @@ const related = data.relatedProjects
 const registrationDate = data.domainRegistrationDate
   ? new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(data.domainRegistrationDate))
   : undefined;
+const lastReviewed = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(data.lastReviewed));
+const projectUrl = new URL(`/work/${data.slug}/`, Astro.site).href;
+const projectStructuredData = {
+  '@type': 'CreativeWork',
+  '@id': projectUrl,
+  name: data.title,
+  description: data.summary,
+  url: projectUrl,
+  author: { '@id': new URL('/#juan-lopez', Astro.site).href },
+  dateModified: data.lastReviewed,
+  about: { '@type': 'Thing', name: data.industry },
+};
 ---
 
-<BaseLayout title={`${data.title} — Juan Lopez`} description={data.summary}>
+<BaseLayout
+  title={`${data.title} Case Study | Juan Lopez`}
+  description={data.summary}
+  type="article"
+  dateModified={data.lastReviewed}
+  breadcrumbs={[{ name: 'Work', item: '/work/' }, { name: data.title, item: `/work/${data.slug}/` }]}
+  structuredData={projectStructuredData}
+>
   <article>
     <header class="case-hero">
       <div class="page-shell">
@@ -54,6 +73,7 @@ const registrationDate = data.domainRegistrationDate
           <div><dt>Platform</dt><dd>{data.platform} · {data.platformVerificationStatus}</dd></div>
           <div><dt>Project type</dt><dd>{data.projectType} · {data.projectTypeVerificationStatus}</dd></div>
           <div><dt>Timeframe</dt><dd>{data.approximateProjectYear}</dd></div>
+          <div><dt>Last reviewed</dt><dd><time datetime={data.lastReviewed}>{lastReviewed}</time></dd></div>
           {data.domain && <div><dt>Domain</dt><dd>{data.domain}</dd></div>}
           {registrationDate && <div><dt>Domain registered</dt><dd>{registrationDate}</dd></div>}
         </dl>
@@ -75,6 +95,13 @@ const registrationDate = data.domainRegistrationDate
           <p class="eyebrow">Context</p>
           <h2>The work in context.</h2>
           <p>{data.problem}</p>
+        </section>
+
+        <section class="answer-block" aria-labelledby="case-summary-heading">
+          <p class="eyebrow">Case study summary</p>
+          <h2 id="case-summary-heading">What did Juan build?</h2>
+          <p>{data.summary}</p>
+          <p class="reviewed-note">This case study was last reviewed on <time datetime={data.lastReviewed}>{lastReviewed}</time>. Project details and limitations are identified throughout the page.</p>
         </section>
 
         <section>

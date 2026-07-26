@@ -16,12 +16,34 @@ interface Props {
   study: CollectionEntry<'research'>;
 }
 
-const { study } = Astro.props;
+const { study } = Astro.props as Props;
 const data = study.data;
 const { Content } = await render(study);
+const lastReviewed = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(data.lastReviewed));
+const studyUrl = new URL(`/research/${data.slug}/`, Astro.site).href;
+const studyStructuredData = {
+  '@type': 'ScholarlyArticle',
+  '@id': studyUrl,
+  headline: data.title,
+  description: data.summary,
+  url: studyUrl,
+  author: { '@id': new URL('/#juan-lopez', Astro.site).href },
+  dateModified: data.lastReviewed,
+  about: [
+    { '@type': 'Thing', name: 'Human–AI interaction' },
+    { '@type': 'Thing', name: 'Social evaluation' },
+  ],
+};
 ---
 
-<BaseLayout title={`${data.shortTitle} — Research by Juan Lopez`} description={data.summary}>
+<BaseLayout
+  title={`${data.shortTitle}: Human–AI Research Study | Juan Lopez`}
+  description={data.summary}
+  type="article"
+  dateModified={data.lastReviewed}
+  breadcrumbs={[{ name: 'Research', item: '/research/' }, { name: data.shortTitle, item: `/research/${data.slug}/` }]}
+  structuredData={studyStructuredData}
+>
   <article>
     <header class="case-hero">
       <div class="page-shell">
@@ -61,6 +83,7 @@ const { Content } = await render(study);
           <div><dt>Author</dt><dd>{data.author}</dd></div>
           <div><dt>Course</dt><dd>{data.course}</dd></div>
           <div><dt>Term</dt><dd>{data.term}</dd></div>
+          <div><dt>Last reviewed</dt><dd><time datetime={data.lastReviewed}>{lastReviewed}</time></dd></div>
           <div><dt>Administration</dt><dd>Online</dd></div>
           <div><dt>Sample</dt><dd>{data.sample}</dd></div>
           <div><dt>Tools</dt><dd>{data.tools.join(' and ')}</dd></div>
@@ -70,6 +93,13 @@ const { Content } = await render(study);
       </aside>
 
       <div class="case-content">
+        <section class="answer-block" aria-labelledby="research-answer-heading">
+          <p class="eyebrow">Short answer</p>
+          <h2 id="research-answer-heading">What did the study find?</h2>
+          <p>{data.mainFinding}</p>
+          <p class="reviewed-note">This online course study was last reviewed on <time datetime={data.lastReviewed}>{lastReviewed}</time>. The interpretation and limitations below apply to this study's specific text-based setting.</p>
+        </section>
+
         <div class="case-prose">
           <Content />
         </div>

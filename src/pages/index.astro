@@ -38,10 +38,10 @@ const services = [
   <section class="hero">
     <div class="page-shell hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Behavior Analyst</p>
-        <p class="hero-name">Juan Lopez</p>
-        <p class="hero-title">Researcher and Digital Systems Designer</p>
-        <h1>I study behavior.<br />I design with <em>people</em> in mind.</h1>
+        <p class="eyebrow">Hi, I’m</p>
+        <h1 class="hero-name">Juan Lopez</h1>
+        <p class="hero-title">Behavior Analyst<br />Researcher &amp; Digital Systems Designer</p>
+        <h2 class="hero-message">I study behavior.<br />I design with <em>people</em> in mind.</h2>
         <p class="hero-copy__body">
           My work begins with observation, data, and respect for the person behind every pattern.
           I carry that foundation into research, care, and every digital system I build.
@@ -52,8 +52,12 @@ const services = [
         </div>
       </div>
 
-      <div class="portrait-stage" role="img" aria-label="Temporary atmospheric hero composition with a side-facing figure overlooking a quiet landscape">
-        <div class="portrait-figure" aria-hidden="true"></div>
+      <div class="portrait-stage">
+        <picture>
+          <source srcset="/images/hero/juan-portrait.avif" type="image/avif" />
+          <source srcset="/images/hero/juan-portrait.webp" type="image/webp" />
+          <img src="/images/hero/juan-portrait.webp" width="1600" height="1200" alt="Juan Lopez standing beside a misty mountain lake" fetchpriority="high" decoding="async" />
+        </picture>
         <aside class="insight-panel" aria-label="Guiding principles">
           <span class="insight-panel__icon" aria-hidden="true">
             <svg viewBox="0 0 32 32"><path d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Z"></path><circle cx="16" cy="16" r="4"></circle></svg>
@@ -64,7 +68,6 @@ const services = [
             <li>Good systems respect choice.</li>
           </ul>
         </aside>
-        <p class="portrait-note">Portrait-ready composition · final likeness requires Juan's reference photo</p>
       </div>
     </div>
   </section>
@@ -148,7 +151,7 @@ const services = [
       />
       <div class="work-grid">
         {projects.map((project, index) => (
-          <ProjectCard project={project} size={index === 0 ? 'lead' : index === 1 ? 'medium' : 'small'} />
+          <ProjectCard project={project} size={index < 2 ? 'medium' : 'small'} />
         ))}
       </div>
     </div>
@@ -198,7 +201,13 @@ const services = [
 
   <section class="section section--tight">
     <div class="page-shell about-preview">
-      <div class="about-preview__visual" role="img" aria-label="Soft abstract composition representing observation, connection, and systems"></div>
+      <div class="about-preview__visual">
+        <picture>
+          <source srcset="/images/portraits/about-observation-systems.avif" type="image/avif" />
+          <source srcset="/images/portraits/about-observation-systems.webp" type="image/webp" />
+          <img src="/images/portraits/about-observation-systems.webp" width="1200" height="1500" alt="Research notebook and paper layers arranged on a light surface" loading="lazy" decoding="async" />
+        </picture>
+      </div>
       <div class="about-preview__content">
         <p class="eyebrow">About Juan</p>
         <h2>Behavior analysis comes first.</h2>

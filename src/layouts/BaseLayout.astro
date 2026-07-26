@@ -8,6 +8,10 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
+  type?: 'website' | 'article';
+  dateModified?: string;
+  breadcrumbs?: Array<{ name: string; item: string }>;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
@@ -15,8 +19,73 @@ const {
   description = 'Juan Lopez studies behavior and builds research, care, and digital systems around clarity, evidence, autonomy, and human dignity.',
   image = '/og-default.svg',
   noindex = false,
+  type = 'website',
+  dateModified,
+  breadcrumbs = [],
+  structuredData,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const siteUrl = new URL('/', Astro.site).href;
+const personId = new URL('/#juan-lopez', Astro.site).href;
+const websiteId = new URL('/#website', Astro.site).href;
+const robots = noindex
+  ? 'noindex,follow'
+  : 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1';
+const pageStructuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: 'Juan Lopez',
+      url: siteUrl,
+      jobTitle: 'Behavior Analyst',
+      description: 'Behavior analyst, researcher, and digital systems designer focused on clarity, evidence, autonomy, and human dignity.',
+      sameAs: ['https://www.linkedin.com/in/juan-lopez04'],
+      knowsAbout: [
+        'Behavior analysis',
+        'Behavioral research',
+        'Web design and development',
+        'Shopify theme development',
+        'Digital systems design',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: siteUrl,
+      name: 'Juan Lopez',
+      description: 'Behavior analysis, research, and digital systems portfolio for Juan Lopez.',
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': canonical.href,
+      url: canonical.href,
+      name: title,
+      description,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': personId },
+      ...(dateModified ? { dateModified } : {}),
+    },
+    ...(breadcrumbs.length
+      ? [{
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+            ...breadcrumbs.map((breadcrumb, index) => ({
+              '@type': 'ListItem',
+              position: index + 2,
+              name: breadcrumb.name,
+              item: new URL(breadcrumb.item, Astro.site).href,
+            })),
+          ],
+        }]
+      : []),
+    ...(structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : []),
+  ],
+};
+const jsonLd = JSON.stringify(pageStructuredData).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -27,18 +96,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#f6f5f1" />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="robots" content={robots} />
+    <meta name="author" content="Juan Lopez" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Juan Lopez" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site)} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+    {type === 'article' && <meta property="article:author" content="Juan Lopez" />}
+    {type === 'article' && dateModified && <meta property="article:modified_time" content={dateModified} />}
+    <script is:inline type="application/ld+json" set:html={jsonLd} />
     <title>{title}</title>
   </head>
   <body>
