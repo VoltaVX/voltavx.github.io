@@ -28,6 +28,7 @@ const studyStructuredData = {
   description: data.summary,
   url: studyUrl,
   author: { '@id': new URL('/#juan-lopez', Astro.site).href },
+  image: new URL(`${data.cover}.webp`, Astro.site).href,
   dateModified: data.lastReviewed,
   about: [
     { '@type': 'Thing', name: 'Human–AI interaction' },
@@ -39,6 +40,7 @@ const studyStructuredData = {
 <BaseLayout
   title={`${data.shortTitle}: Human–AI Research Study | Juan Lopez`}
   description={data.summary}
+  image={`${data.cover}.webp`}
   type="article"
   dateModified={data.lastReviewed}
   breadcrumbs={[{ name: 'Research', item: '/research/' }, { name: data.shortTitle, item: `/research/${data.slug}/` }]}

@@ -35,6 +35,7 @@ const projectStructuredData = {
   description: data.summary,
   url: projectUrl,
   author: { '@id': new URL('/#juan-lopez', Astro.site).href },
+  image: new URL(`${data.cover}.webp`, Astro.site).href,
   dateModified: data.lastReviewed,
   about: { '@type': 'Thing', name: data.industry },
 };
@@ -43,6 +44,7 @@ const projectStructuredData = {
 <BaseLayout
   title={`${data.title} Case Study | Juan Lopez`}
   description={data.summary}
+  image={`${data.cover}.webp`}
   type="article"
   dateModified={data.lastReviewed}
   breadcrumbs={[{ name: 'Work', item: '/work/' }, { name: data.title, item: `/work/${data.slug}/` }]}
