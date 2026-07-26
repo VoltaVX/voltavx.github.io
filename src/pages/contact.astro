@@ -1,0 +1,82 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact — Juan Lopez"
+  description="Contact Juan Lopez about behavioral research, web design and development, Shopify themes, commerce, and data-content systems."
+>
+  <header class="page-hero">
+    <div class="page-shell page-hero__inner">
+      <p class="eyebrow">Contact</p>
+      <h1>Start with the problem you are trying to understand.</h1>
+      <p class="page-hero__lede">
+        Share the audience, the current barrier, and what a useful outcome would look like. A clear scope can grow from there.
+      </p>
+    </div>
+  </header>
+
+  <section class="section--tight">
+    <div class="page-shell contact-layout">
+      <div>
+        <div class="contact-details">
+          <a href="mailto:voltavxofficial@gmail.com">
+            <strong>Email</strong>
+            <span>voltavxofficial@gmail.com</span>
+          </a>
+          <a href="https://www.linkedin.com/in/juan-lopez04" target="_blank" rel="noreferrer">
+            <strong>LinkedIn</strong>
+            <span>Connect with Juan</span>
+          </a>
+          <a href="/work/">
+            <strong>Review the work</strong>
+            <span>Case studies, research, and systems</span>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" data-contact-form>
+        <div class="form-field">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="form-field">
+          <label for="email">Your email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="form-field">
+          <label for="topic">What would you like to discuss?</label>
+          <select id="topic" name="topic">
+            <option>Behavioral research and strategy</option>
+            <option>Web design and development</option>
+            <option>Shopify theme or commerce system</option>
+            <option>Data or content system</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="message">A little context</label>
+          <textarea id="message" name="message" required aria-describedby="message-note"></textarea>
+          <p id="message-note" class="form-note">Please do not include confidential health or client information.</p>
+        </div>
+        <button class="button button--primary" type="submit">Prepare email <span aria-hidden="true">↗</span></button>
+        <p class="form-note" aria-live="polite" data-form-status>This static form opens your email application so you can review the message before sending.</p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  const status = document.querySelector<HTMLElement>('[data-form-status]');
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const values = new FormData(form);
+    const subject = encodeURIComponent(`Portfolio inquiry: ${values.get('topic') ?? 'Project'}`);
+    const body = encodeURIComponent(
+      `Name: ${values.get('name')}\nEmail: ${values.get('email')}\nTopic: ${values.get('topic')}\n\n${values.get('message')}`
+    );
+    if (status) status.textContent = 'Your email application should open now. Review the message before sending.';
+    window.location.href = `mailto:voltavxofficial@gmail.com?subject=${subject}&body=${body}`;
+  });
+</script>

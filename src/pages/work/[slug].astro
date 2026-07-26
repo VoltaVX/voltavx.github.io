@@ -1,0 +1,169 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProjectVisual from '@/components/ui/ProjectVisual.astro';
+import StatusBadge from '@/components/ui/StatusBadge.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project, projects },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { project, projects } = Astro.props as Props;
+const data = project.data;
+const { Content } = await render(project);
+const related = data.relatedProjects
+  .map((slug) => projects.find((item) => item.data.slug === slug))
+  .filter(Boolean) as CollectionEntry<'projects'>[];
+const registrationDate = data.domainRegistrationDate
+  ? new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(data.domainRegistrationDate))
+  : undefined;
+---
+
+<BaseLayout title={`${data.title} — Juan Lopez`} description={data.summary}>
+  <article>
+    <header class="case-hero">
+      <div class="page-shell">
+        <div class="case-hero__head">
+          <div>
+            <p class="eyebrow">{data.category}</p>
+            <h1>{data.title}</h1>
+            <p class="case-hero__summary">{data.longerDescription}</p>
+          </div>
+          <StatusBadge status={data.status} />
+        </div>
+        <div class="case-hero__visual">
+          <ProjectVisual cover={data.cover} alt={data.coverAlt} eager />
+        </div>
+      </div>
+    </header>
+
+    <div class="page-shell case-layout">
+      <aside class="case-meta" aria-label="Project details">
+        <dl>
+          <div><dt>Status</dt><dd>{data.status}</dd></div>
+          <div><dt>Role</dt><dd>{data.role}</dd></div>
+          <div><dt>Platform</dt><dd>{data.platform} · {data.platformVerificationStatus}</dd></div>
+          <div><dt>Project type</dt><dd>{data.projectType} · {data.projectTypeVerificationStatus}</dd></div>
+          <div><dt>Timeframe</dt><dd>{data.approximateProjectYear}</dd></div>
+          {data.domain && <div><dt>Domain</dt><dd>{data.domain}</dd></div>}
+          {registrationDate && <div><dt>Domain registered</dt><dd>{registrationDate}</dd></div>}
+        </dl>
+        {data.liveUrl && <a class="button button--primary" href={data.liveUrl} target="_blank" rel="noreferrer">Visit live website <span aria-hidden="true">↗</span></a>}
+        {data.status === 'Under Construction' && (
+          <div class="project-card__actions">
+            <a class="text-link" href="#current-phase">Read build notes <span aria-hidden="true">↓</span></a>
+            <a class="text-link text-link--muted" href="/contact/">Follow development <span aria-hidden="true">↗</span></a>
+          </div>
+        )}
+        <p class="verification-box">
+          <strong>Date source:</strong> {data.dateSource}
+          {data.verificationNote && <><br /><br />{data.verificationNote}</>}
+        </p>
+      </aside>
+
+      <div class="case-content">
+        <section>
+          <p class="eyebrow">Context</p>
+          <h2>The work in context.</h2>
+          <p>{data.problem}</p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Role, audience and objectives</p>
+          <h2>Responsibility carried through the system.</h2>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h3>Juan's role</h3>
+              <ul>{data.responsibilities.map((item) => <li>{item}</li>)}</ul>
+            </div>
+            <div class="detail-card">
+              <h3>Audience</h3>
+              <ul>{data.audience.map((item) => <li>{item}</li>)}</ul>
+            </div>
+            <div class="detail-card">
+              <h3>Objectives</h3>
+              <ul>{data.objectives.map((item) => <li>{item}</li>)}</ul>
+            </div>
+            <div class="detail-card">
+              <h3>Behavioral lens</h3>
+              <ul>{data.behavioralConcepts.map((item) => <li>{item}</li>)}</ul>
+            </div>
+          </div>
+        </section>
+
+        <div class="case-prose" id="current-phase">
+          <Content />
+        </div>
+
+        <section>
+          <p class="eyebrow">Information architecture and visual direction</p>
+          <h2>Important structural decisions.</h2>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h3>Information architecture</h3>
+              <ul>{data.informationArchitecture.map((item) => <li>{item}</li>)}</ul>
+            </div>
+            <div class="detail-card">
+              <h3>Design decisions</h3>
+              <ul>{data.designDecisions.map((item) => <li>{item}</li>)}</ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Technical implementation</p>
+          <h2>Infrastructure, responsive behavior, and access.</h2>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h3>Email, forms, payments and platform</h3>
+              <ul>{data.infrastructure.map((item) => <li>{item}</li>)}</ul>
+            </div>
+            <div class="detail-card">
+              <h3>Accessibility and responsive design</h3>
+              <ul>{data.accessibilityConsiderations.map((item) => <li>{item}</li>)}</ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Available evidence</p>
+          <h2>What can—and cannot—be claimed.</h2>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h3>Available outcomes</h3>
+              <ul>{data.outcomes.map((item) => <li>{item}</li>)}</ul>
+            </div>
+            <div class="detail-card">
+              <h3>Limitations</h3>
+              <ul>{data.limitations.map((item) => <li>{item}</li>)}</ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Reflection</p>
+          <h2>What the project clarified.</h2>
+          <p>{data.reflection}</p>
+        </section>
+
+        {related.length > 0 && (
+          <section class="related-work">
+            <p class="eyebrow">Related work</p>
+            <div class="related-work__links">
+              {related.map((item) => <a href={`/work/${item.data.slug}/`}>{item.data.title} <span aria-hidden="true">↗</span></a>)}
+            </div>
+          </section>
+        )}
+      </div>
+    </div>
+  </article>
+</BaseLayout>

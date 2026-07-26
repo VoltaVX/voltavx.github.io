@@ -1,0 +1,109 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import StatusBadge from '@/components/ui/StatusBadge.astro';
+import StudyDiagram from '@/components/home/StudyDiagram.astro';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('research');
+  return studies.map((study) => ({
+    params: { slug: study.data.slug },
+    props: { study },
+  }));
+}
+
+interface Props {
+  study: CollectionEntry<'research'>;
+}
+
+const { study } = Astro.props;
+const data = study.data;
+const { Content } = await render(study);
+---
+
+<BaseLayout title={`${data.shortTitle} — Research by Juan Lopez`} description={data.summary}>
+  <article>
+    <header class="case-hero">
+      <div class="page-shell">
+        <div class="case-hero__head">
+          <div>
+            <p class="eyebrow">Research · {data.term}</p>
+            <h1>{data.shortTitle}</h1>
+            <p class="case-hero__summary">{data.title}</p>
+          </div>
+          <StatusBadge status={data.status} />
+        </div>
+        <div class="research-spotlight">
+          <div>
+            <p class="eyebrow">Research question</p>
+            <h2>Does the label change the judgment?</h2>
+            <p>{data.summary}</p>
+            <div class="research-tools">
+              {data.tools.map((tool) => <span class="tool-label">{tool}</span>)}
+              <span class="tool-label">Online study</span>
+            </div>
+          </div>
+          <aside class="research-design-panel" aria-label="Study design summary">
+            <dl class="study-meta">
+              <div><dt>Sample</dt><dd>N = 123</dd></div>
+              <div><dt>Conditions</dt><dd>Three</dd></div>
+              <div><dt>Transcript</dt><dd>Identical</dd></div>
+            </dl>
+            <StudyDiagram />
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-shell case-layout">
+      <aside class="case-meta" aria-label="Research metadata">
+        <dl>
+          <div><dt>Author</dt><dd>{data.author}</dd></div>
+          <div><dt>Course</dt><dd>{data.course}</dd></div>
+          <div><dt>Term</dt><dd>{data.term}</dd></div>
+          <div><dt>Administration</dt><dd>Online</dd></div>
+          <div><dt>Sample</dt><dd>{data.sample}</dd></div>
+          <div><dt>Tools</dt><dd>{data.tools.join(' and ')}</dd></div>
+          <div><dt>Conditions</dt><dd>{data.conditions.join(', ')}</dd></div>
+        </dl>
+        <a class="button button--secondary" href="/contact/">Discuss the research</a>
+      </aside>
+
+      <div class="case-content">
+        <div class="case-prose">
+          <Content />
+        </div>
+
+        <section>
+          <p class="eyebrow">Method at a glance</p>
+          <h2>The control was the conversation itself.</h2>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h3>Held constant</h3>
+              <ul>
+                <li>The same approximately 446-word transcript</li>
+                <li>The online evaluation flow</li>
+                <li>The response scales</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Changed</h3>
+              <ul>
+                <li>The stated origin of the two speakers</li>
+                <li>Human–Human, Human–AI, or AI–AI label</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Responsible interpretation</p>
+          <h2>A difference in this setting, not a universal rule.</h2>
+          <p>
+            The findings show that origin beliefs affected social evaluation in the study's text-based context. They do not establish that all people reject AI, that labels always dominate content, or that any system can control judgment.
+          </p>
+        </section>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

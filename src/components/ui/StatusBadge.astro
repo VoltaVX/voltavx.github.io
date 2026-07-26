@@ -1,0 +1,12 @@
+---
+interface Props {
+  status: string;
+}
+const { status } = Astro.props;
+const statusClass = status.toLowerCase().replaceAll(' ', '-');
+---
+
+<span class:list={['status-badge', `status-badge--${statusClass}`]}>
+  {status === 'Under Construction' && <span class="status-badge__pulse" aria-hidden="true"></span>}
+  {status}
+</span>

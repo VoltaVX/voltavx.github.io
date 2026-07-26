@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProjectCard from '@/components/work/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.featuredOrder - b.data.featuredOrder);
+const categories = ['All work', 'Client & Service Systems', 'Commerce & Brand Systems', 'Research & Behavioral Systems'];
+---
+
+<BaseLayout
+  title="Work — Juan Lopez"
+  description="Client websites, Shopify commerce systems, behavioral research, operations, and data visualization work by Juan Lopez."
+>
+  <header class="page-hero">
+    <div class="page-shell page-hero__inner">
+      <p class="eyebrow">Work</p>
+      <h1>Systems shaped around real human needs.</h1>
+      <p class="page-hero__lede">
+        Each project begins with a different audience and problem. The common thread is careful structure, clear communication, and evidence that stays within what can be supported.
+      </p>
+    </div>
+  </header>
+
+  <section class="section--tight">
+    <div class="page-shell">
+      <div class="filter-nav" role="group" aria-label="Filter projects">
+        {categories.map((category, index) => (
+          <button class="filter-button" type="button" data-filter={category} aria-pressed={index === 0 ? 'true' : 'false'}>
+            {category}
+          </button>
+        ))}
+      </div>
+      <div class="work-index-grid" aria-live="polite">
+        {projects.map((project) => (
+          <div data-project-category={project.data.category}>
+            <ProjectCard project={project} size="small" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const filters = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+  const projects = [...document.querySelectorAll<HTMLElement>('[data-project-category]')];
+
+  filters.forEach((button) => {
+    button.addEventListener('click', () => {
+      const selected = button.dataset.filter;
+      filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      projects.forEach((project) => {
+        project.hidden = selected !== 'All work' && project.dataset.projectCategory !== selected;
+      });
+    });
+  });
+</script>

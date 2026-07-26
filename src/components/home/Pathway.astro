@@ -1,0 +1,65 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Attention and Relevance',
+    concept: 'Attending',
+    copy: 'People notice what feels clear, relevant, and connected to their immediate needs. Strong hierarchy helps important information become easier to find without demanding attention through noise.',
+    implication: 'Design implication: make the essential path visible before adding detail.',
+    icon: 'eye',
+  },
+  {
+    number: '02',
+    title: 'Clear Cues and Orientation',
+    concept: 'Discriminative cues',
+    copy: 'A person should be able to understand where they are, what is available, and what will happen next. Familiar cues and predictable structure reduce uncertainty.',
+    implication: 'Design implication: use stable labels, states, and navigation patterns.',
+    icon: 'signpost',
+  },
+  {
+    number: '03',
+    title: 'Learning in Manageable Steps',
+    concept: 'Prompting and fading',
+    copy: 'Complex information becomes easier to understand when it is introduced gradually and supported by clear examples, feedback, and opportunities to succeed.',
+    implication: 'Design implication: disclose complexity as it becomes useful.',
+    icon: 'steps',
+  },
+  {
+    number: '04',
+    title: 'Feedback, Trust, and Continuity',
+    concept: 'Feedback',
+    copy: 'Reliable feedback helps people understand the result of an action. Consistency over time builds confidence and makes an experience feel dependable.',
+    implication: 'Design implication: show what happened and preserve context.',
+    icon: 'check',
+  },
+  {
+    number: '05',
+    title: 'Measure, Learn, and Refine',
+    concept: 'Socially meaningful outcomes',
+    copy: 'A useful system should be evaluated by what people can accomplish with it. Observe outcomes, identify barriers, and improve the environment when the data shows that change is needed.',
+    implication: 'Design implication: measure success against meaningful tasks.',
+    icon: 'trend',
+  },
+];
+---
+
+<ol class="pathway-list">
+  {steps.map((step) => (
+    <li class="pathway-step">
+      <span class="pathway-step__number">{step.number}</span>
+      <div class="pathway-step__icon" aria-hidden="true">
+        {step.icon === 'eye' && <svg viewBox="0 0 48 48"><path d="M4 24s7-11 20-11 20 11 20 11-7 11-20 11S4 24 4 24Z"></path><circle cx="24" cy="24" r="5"></circle></svg>}
+        {step.icon === 'signpost' && <svg viewBox="0 0 48 48"><path d="M24 44V7M13 9h24l5 5-5 5H13zM35 24H10l-5 5 5 5h25z"></path></svg>}
+        {step.icon === 'steps' && <svg viewBox="0 0 48 48"><path d="M7 39h10v-9h9v-9h9v-9h8"></path><path d="m36 7 7 5-7 5"></path></svg>}
+        {step.icon === 'check' && <svg viewBox="0 0 48 48"><path d="M24 44s16-7 16-20V9L24 4 8 9v15c0 13 16 20 16 20Z"></path><path d="m16 24 5 5 11-12"></path></svg>}
+        {step.icon === 'trend' && <svg viewBox="0 0 48 48"><path d="M6 39V8M6 39h36"></path><path d="m11 31 9-10 7 6 13-15"></path><path d="M33 12h7v7"></path></svg>}
+      </div>
+      <div class="pathway-step__content">
+        <p class="eyebrow">{step.concept}</p>
+        <h3>{step.title}</h3>
+        <p>{step.copy}</p>
+        <small>{step.implication}</small>
+      </div>
+    </li>
+  ))}
+</ol>

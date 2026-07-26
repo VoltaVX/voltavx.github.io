@@ -1,0 +1,26 @@
+{
+  "name": "juan-lopez-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "start": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "7.0.3",
+    "@astrojs/sitemap": "3.7.3",
+    "astro": "7.1.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.9",
+    "typescript": "5.9.3"
+  },
+  "type": "module",
+  "displayName": "Juan Lopez Portfolio"
+}

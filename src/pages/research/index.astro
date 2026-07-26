@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import StatusBadge from '@/components/ui/StatusBadge.astro';
+import StudyDiagram from '@/components/home/StudyDiagram.astro';
+
+const studies = await getCollection('research');
+---
+
+<BaseLayout
+  title="Research — Juan Lopez"
+  description="Behavioral and human–AI interaction research by Juan Lopez, beginning with AI Misattribution."
+>
+  <header class="page-hero">
+    <div class="page-shell page-hero__inner">
+      <p class="eyebrow">Research</p>
+      <h1>Questions before conclusions.</h1>
+      <p class="page-hero__lede">
+        Research helps me separate an intuition from evidence. The public summaries here keep methods, findings, and limits close together.
+      </p>
+    </div>
+  </header>
+
+  <section class="section--tight">
+    <div class="page-shell">
+      {studies.map((study) => (
+        <article class="research-index-card">
+          <div>
+            <div class="project-card__topline">
+              <p class="eyebrow">{study.data.term}</p>
+              <StatusBadge status={study.data.status} />
+            </div>
+            <h2>{study.data.title}</h2>
+            <p>{study.data.summary}</p>
+            <p><strong>Main finding:</strong> {study.data.mainFinding}</p>
+            <a class="button button--primary" href={`/research/${study.data.slug}/`}>Read the research summary</a>
+          </div>
+          <aside class="research-index-card__aside" aria-label="Study metadata">
+            <StudyDiagram />
+            <dl>
+              <div><dt>Course</dt><dd>{study.data.course}</dd></div>
+              <div><dt>Author</dt><dd>{study.data.author}</dd></div>
+              <div><dt>Sample</dt><dd>{study.data.sample}</dd></div>
+              <div><dt>Tools</dt><dd>{study.data.tools.join(' · ')}</dd></div>
+            </dl>
+          </aside>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

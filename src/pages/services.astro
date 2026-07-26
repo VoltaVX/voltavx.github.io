@@ -1,0 +1,82 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const services = [
+  {
+    number: '01',
+    title: 'Behavioral Research & Strategy',
+    copy: 'Research that identifies patterns, barriers, needs, and opportunities before design begins.',
+    details: ['Research questions and study framing', 'Questionnaire and information design', 'Pattern and barrier analysis', 'Evidence-aware recommendations'],
+  },
+  {
+    number: '02',
+    title: 'Web Design & Development',
+    copy: 'Responsive websites built around clarity, accessibility, performance, and purposeful structure.',
+    details: ['Information architecture', 'Visual and responsive design', 'SitePad development', 'Forms, business email, domains, and launch'],
+  },
+  {
+    number: '03',
+    title: 'Commerce & Digital Systems',
+    copy: 'Storefronts and operational systems that make products, services, and decisions easier to understand.',
+    details: ['Shopify theme development', 'Product taxonomy and merchandising', 'Payment and email infrastructure', 'Responsive commerce experiences'],
+  },
+  {
+    number: '04',
+    title: 'Data & Content Systems',
+    copy: 'Tools that organize information, reveal patterns, and support more informed decisions.',
+    details: ['Structured content models', 'Data-visualization concepts', 'Accessible information displays', 'Documentation and system planning'],
+  },
+];
+---
+
+<BaseLayout
+  title="Services — Juan Lopez"
+  description="Behavioral research, web design and development, Shopify theme development, commerce systems, and data-content systems by Juan Lopez."
+>
+  <header class="page-hero">
+    <div class="page-shell page-hero__inner">
+      <p class="eyebrow">Services</p>
+      <h1>Research, design, and implementation in one clear process.</h1>
+      <p class="page-hero__lede">
+        Juan can move from a question to a working system while keeping scope, evidence, access, and human consequences visible.
+      </p>
+    </div>
+  </header>
+
+  <section class="section--tight">
+    <div class="page-shell service-grid">
+      {services.map((service) => (
+        <article class="service-card">
+          <span class="service-card__number">{service.number}</span>
+          <h2>{service.title}</h2>
+          <p>{service.copy}</p>
+          <ul>
+            {service.details.map((detail) => <li>{detail}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page-shell behavior-statement">
+      <div class="behavior-statement__copy">
+        <p class="eyebrow">How projects are framed</p>
+        <h2 class="editorial-heading">Useful before impressive.<em>Clear before clever.</em></h2>
+        <p class="behavior-statement__body">
+          A project begins by clarifying who it is for, what they need to understand or accomplish, and what evidence is actually available. Design decisions follow that frame.
+        </p>
+      </div>
+      <aside class="care-process" aria-label="Project framing process">
+        <ol>
+          <li>Define the real problem</li>
+          <li>Map people and information</li>
+          <li>Build the smallest useful system</li>
+          <li>Test access and comprehension</li>
+          <li>Refine from evidence</li>
+        </ol>
+        <p>No guaranteed conversions or predetermined human outcomes.</p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
