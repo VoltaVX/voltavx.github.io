@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "VoltaVX Portfolio"
+    }
+  ],
+  "settings": {
+    "workbench.editor.labelFormat": "medium",
+    "window.title": "VoltaVX Portfolio — ${activeEditorShort}"
+  },
+  "extensions": {
+    "recommendations": [
+      "astro-build.astro-vscode",
+      "esbenp.prettier-vscode",
+      "GitHub.vscode-github-actions",
+      "streetsidesoftware.code-spell-checker",
+      "usernamehw.errorlens"
+    ]
+  }
+}
