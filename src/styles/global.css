@@ -86,7 +86,8 @@ p { max-width: var(--measure); }
 .page-shell { width: min(calc(100% - 128px), var(--content)); margin-inline: auto; }
 .section { padding-block: var(--space-10); }
 .section--tight { padding-block: var(--space-9); }
-.section--after-hero { padding-top: var(--space-9); }
+.section--after-hero { padding-top: var(--space-9); padding-bottom: var(--space-8); }
+.section--after-card { padding-top: var(--space-9); }
 .eyebrow {
   margin-bottom: var(--space-3);
   color: var(--accent-strong);

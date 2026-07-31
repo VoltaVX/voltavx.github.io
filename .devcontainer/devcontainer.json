@@ -1,0 +1,22 @@
+{
+  "name": "VoltaVX Portfolio",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "node",
+  "appPort": ["4322:4322"],
+  "forwardPorts": [4322],
+  "portsAttributes": {
+    "4322": {
+      "label": "Astro Development Server",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": ["astro-build.astro-vscode", "esbenp.prettier-vscode"]
+    }
+  }
+}

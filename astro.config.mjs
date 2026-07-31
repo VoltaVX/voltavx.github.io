@@ -10,4 +10,8 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
+  server: {
+    port: 4322,
+    host: true,
+  },
 });
