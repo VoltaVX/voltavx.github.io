@@ -2,63 +2,109 @@
 const steps = [
   {
     number: '01',
-    title: 'Attention and Relevance',
-    concept: 'Attending',
-    copy: 'People notice what feels clear, relevant, and connected to their immediate needs. Strong hierarchy helps important information become easier to find without demanding attention through noise.',
-    implication: 'Design implication: make the essential path visible before adding detail.',
+    title: 'Make What Matters Easy to Notice',
+    concept: 'Stimulus salience and attending',
+    copy:
+      'Visual hierarchy, contrast, and placement make task-relevant information easier to distinguish from supporting detail. The most useful next action should stand out without competing unnecessarily for attention.',
+    implication:
+      'Design implication: prioritize the next useful action, then layer in supporting detail.',
     icon: 'eye',
   },
   {
     number: '02',
-    title: 'Clear Cues and Orientation',
-    concept: 'Discriminative cues',
-    copy: 'A person should be able to understand where they are, what is available, and what will happen next. Familiar cues and predictable structure reduce uncertainty.',
-    implication: 'Design implication: use stable labels, states, and navigation patterns.',
+    title: 'Use Clear Cues for Action',
+    concept: 'Discriminative stimuli',
+    copy:
+      'Labels, controls, and interface states should signal which actions are available and which are likely to work. Consistent cues reduce guesswork and help people move through a system with greater confidence.',
+    implication:
+      'Design implication: use stable labels, recognizable controls, and predictable states.',
     icon: 'signpost',
   },
   {
     number: '03',
-    title: 'Learning in Manageable Steps',
-    concept: 'Prompting and fading',
-    copy: 'Complex information becomes easier to understand when it is introduced gradually and supported by clear examples, feedback, and opportunities to succeed.',
-    implication: 'Design implication: disclose complexity as it becomes useful.',
+    title: 'Support Progress in Manageable Steps',
+    concept: 'Task analysis, prompting, and fading',
+    copy:
+      'Complex tasks become more approachable when they are divided into meaningful steps and supported at the moment help is needed. That assistance should gradually recede as the person becomes more capable of completing the task independently.',
+    implication:
+      'Design implication: sequence difficult tasks, provide timely guidance, and fade support when it is no longer needed.',
     icon: 'steps',
   },
   {
     number: '04',
-    title: 'Feedback, Trust, and Continuity',
-    concept: 'Feedback',
-    copy: 'Reliable feedback helps people understand the result of an action. Consistency over time builds confidence and makes an experience feel dependable.',
-    implication: 'Design implication: show what happened and preserve context.',
+    title: 'Make Outcomes Clear and Consistent',
+    concept: 'Consequences and reinforcement',
+    copy:
+      'Immediate, accurate feedback helps people determine whether an action worked. A consequence functions as reinforcement only when it makes the behavior it follows more likely to occur again.',
+    implication:
+      'Design implication: confirm outcomes, preserve progress, and make effective actions easy to repeat.',
     icon: 'check',
   },
   {
     number: '05',
-    title: 'Measure, Learn, and Refine',
-    concept: 'Socially meaningful outcomes',
-    copy: 'A useful system should be evaluated by what people can accomplish with it. Observe outcomes, identify barriers, and improve the environment when the data shows that change is needed.',
-    implication: 'Design implication: measure success against meaningful tasks.',
+    title: 'Measure Meaningful Outcomes',
+    concept: 'Social validity and data-based decisions',
+    copy:
+      'A useful system should be evaluated by outcomes that matter to the people using it. Measure whether important tasks become more successful, efficient, or independent, identify barriers, and revise the environment when results fall short.',
+    implication:
+      'Design implication: define observable success with users and let the results guide refinement.',
     icon: 'trend',
   },
 ];
 ---
 
-<ol class="pathway-list">
+<ol
+  class="pathway-list"
+  aria-label="Behavior-informed design pathway"
+>
   {steps.map((step) => (
     <li class="pathway-step">
-      <span class="pathway-step__number">{step.number}</span>
+      <span class="pathway-step__number" aria-hidden="true">
+        {step.number}
+      </span>
+
       <div class="pathway-step__icon" aria-hidden="true">
-        {step.icon === 'eye' && <svg viewBox="0 0 48 48"><path d="M4 24s7-11 20-11 20 11 20 11-7 11-20 11S4 24 4 24Z"></path><circle cx="24" cy="24" r="5"></circle></svg>}
-        {step.icon === 'signpost' && <svg viewBox="0 0 48 48"><path d="M24 44V7M13 9h24l5 5-5 5H13zM35 24H10l-5 5 5 5h25z"></path></svg>}
-        {step.icon === 'steps' && <svg viewBox="0 0 48 48"><path d="M7 39h10v-9h9v-9h9v-9h8"></path><path d="m36 7 7 5-7 5"></path></svg>}
-        {step.icon === 'check' && <svg viewBox="0 0 48 48"><path d="M24 44s16-7 16-20V9L24 4 8 9v15c0 13 16 20 16 20Z"></path><path d="m16 24 5 5 11-12"></path></svg>}
-        {step.icon === 'trend' && <svg viewBox="0 0 48 48"><path d="M6 39V8M6 39h36"></path><path d="m11 31 9-10 7 6 13-15"></path><path d="M33 12h7v7"></path></svg>}
+        {step.icon === 'eye' && (
+          <svg viewBox="0 0 48 48">
+            <path d="M4 24s7-11 20-11 20 11 20 11-7 11-20 11S4 24 4 24Z"></path>
+            <circle cx="24" cy="24" r="5"></circle>
+          </svg>
+        )}
+
+        {step.icon === 'signpost' && (
+          <svg viewBox="0 0 48 48">
+            <path d="M24 44V7M13 9h24l5 5-5 5H13zM35 24H10l-5 5 5 5h25z"></path>
+          </svg>
+        )}
+
+        {step.icon === 'steps' && (
+          <svg viewBox="0 0 48 48">
+            <path d="M7 39h10v-9h9v-9h9v-9h8"></path>
+            <path d="m36 7 7 5-7 5"></path>
+          </svg>
+        )}
+
+        {step.icon === 'check' && (
+          <svg viewBox="0 0 48 48">
+            <path d="M24 44s16-7 16-20V9L24 4 8 9v15c0 13 16 20 16 20Z"></path>
+            <path d="m16 24 5 5 11-12"></path>
+          </svg>
+        )}
+
+        {step.icon === 'trend' && (
+          <svg viewBox="0 0 48 48">
+            <path d="M6 39V8M6 39h36"></path>
+            <path d="m11 31 9-10 7 6 13-15"></path>
+            <path d="M33 12h7v7"></path>
+          </svg>
+        )}
       </div>
+
       <div class="pathway-step__content">
         <p class="eyebrow">{step.concept}</p>
         <h3>{step.title}</h3>
         <p>{step.copy}</p>
-        <small>{step.implication}</small>
+        <p class="pathway-step__implication">{step.implication}</p>
       </div>
     </li>
   ))}

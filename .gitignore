@@ -27,6 +27,9 @@ coverage/
 
 # Editor and operating-system files
 .DS_Store
+.DS_Store?
+._*
+DS_Store
 Thumbs.db
 .idea/
 .vscode/
