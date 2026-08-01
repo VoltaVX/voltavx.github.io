@@ -40,3 +40,14 @@ Thumbs.db
 .wrangler/
 .dev.vars
 .dev.vars.*
+
+# Archives and zip packages
+*.zip
+*.tar.gz
+*.tgz
+
+# Custom agent skills and git automation scripts
+.agents/skills/
+scripts/git_commit.sh
+scripts/git_push_origin.sh
+
