@@ -128,6 +128,23 @@ const studyStructuredData = {
           </div>
         </section>
 
+        {data.outcomes && data.limitations && (
+          <section>
+            <p class="eyebrow">Available evidence</p>
+            <h2>What can—and cannot—be claimed.</h2>
+            <div class="detail-grid">
+              <div class="detail-card">
+                <h3>Available outcomes</h3>
+                <ul>{data.outcomes.map((item) => <li>{item}</li>)}</ul>
+              </div>
+              <div class="detail-card">
+                <h3>Limitations</h3>
+                <ul>{data.limitations.map((item) => <li>{item}</li>)}</ul>
+              </div>
+            </div>
+          </section>
+        )}
+
         <section>
           <p class="eyebrow">Responsible interpretation</p>
           <h2>A difference in this setting, not a universal rule.</h2>

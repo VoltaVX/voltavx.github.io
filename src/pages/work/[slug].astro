@@ -39,6 +39,7 @@ const projectStructuredData = {
   dateModified: data.lastReviewed,
   about: { '@type': 'Thing', name: data.industry },
 };
+const isResearchProject = data.category.toLowerCase().includes('research') || data.projectType.toLowerCase().includes('research');
 ---
 
 <BaseLayout
@@ -103,7 +104,7 @@ const projectStructuredData = {
           <p class="eyebrow">Case study summary</p>
           <h2 id="case-summary-heading">What did Juan build?</h2>
           <p>{data.summary}</p>
-          <p class="reviewed-note">This case study was last reviewed on <time datetime={data.lastReviewed}>{lastReviewed}</time>. Project details and limitations are identified throughout the page.</p>
+          <p class="reviewed-note">This case study was last reviewed on <time datetime={data.lastReviewed}>{lastReviewed}</time>.{isResearchProject ? ' Project details and limitations are identified throughout the page.' : ''}</p>
         </section>
 
         <section>
@@ -163,20 +164,22 @@ const projectStructuredData = {
           </div>
         </section>
 
-        <section>
-          <p class="eyebrow">Available evidence</p>
-          <h2>What can—and cannot—be claimed.</h2>
-          <div class="detail-grid">
-            <div class="detail-card">
-              <h3>Available outcomes</h3>
-              <ul>{data.outcomes.map((item) => <li>{item}</li>)}</ul>
+        {isResearchProject && (
+          <section>
+            <p class="eyebrow">Available evidence</p>
+            <h2>What can—and cannot—be claimed.</h2>
+            <div class="detail-grid">
+              <div class="detail-card">
+                <h3>Available outcomes</h3>
+                <ul>{data.outcomes.map((item) => <li>{item}</li>)}</ul>
+              </div>
+              <div class="detail-card">
+                <h3>Limitations</h3>
+                <ul>{data.limitations.map((item) => <li>{item}</li>)}</ul>
+              </div>
             </div>
-            <div class="detail-card">
-              <h3>Limitations</h3>
-              <ul>{data.limitations.map((item) => <li>{item}</li>)}</ul>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <section>
           <p class="eyebrow">Reflection</p>

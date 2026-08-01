@@ -78,6 +78,8 @@ const research = defineCollection({
     sample: z.string(),
     conditions: z.array(z.string()),
     mainFinding: z.string(),
+    outcomes: z.array(z.string()).optional(),
+    limitations: z.array(z.string()).optional(),
     featured: z.boolean(),
     cover: z.string(),
   }),
