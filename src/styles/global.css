@@ -642,6 +642,10 @@ p { max-width: var(--measure); }
 .form-field input, .form-field textarea, .form-field select { width: 100%; min-height: 52px; padding: 13px 15px; border: 1px solid var(--line-strong); border-radius: var(--radius-control); color: var(--ink); background: white; }
 .form-field textarea { min-height: 170px; resize: vertical; }
 .form-note { margin: 0; color: var(--ink-faint); font-size: 0.78rem; }
+.form-note--highlight { color: var(--ink); font-weight: 650; }
+.contact-actions { display: grid; gap: var(--space-3); padding: var(--space-4); border: 1px dashed var(--line-strong); border-radius: var(--radius-card); background: rgba(245, 243, 238, 0.75); }
+.contact-actions__buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
 .resume-list { display: grid; gap: var(--space-5); margin: 0; padding: 0; list-style: none; }
 .resume-list li { padding: var(--space-5); border: 1px solid var(--line); border-radius: var(--radius-card); background: rgba(255, 255, 255, 0.6); }
 .resume-list h3 { margin-bottom: var(--space-2); }
