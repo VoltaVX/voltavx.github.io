@@ -72,11 +72,22 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     event.preventDefault();
     if (!form.reportValidity()) return;
     const values = new FormData(form);
-    const subject = encodeURIComponent(`Portfolio inquiry: ${values.get('topic') ?? 'Project'}`);
-    const body = encodeURIComponent(
-      `Name: ${values.get('name')}\nEmail: ${values.get('email')}\nTopic: ${values.get('topic')}\n\n${values.get('message')}`
-    );
+    const topic = values.get('topic') ?? 'Project';
+    const name = values.get('name') ?? '';
+    const email = values.get('email') ?? '';
+    const message = values.get('message') ?? '';
+
+    const subject = encodeURIComponent(`Portfolio inquiry: ${topic}`);
+    const bodyText = `Name: ${name}\r\nEmail: ${email}\r\nTopic: ${topic}\r\n\r\nMessage:\r\n${message}`;
+    const body = encodeURIComponent(bodyText);
+    const mailtoUrl = `mailto:voltavxofficial@gmail.com?subject=${subject}&body=${body}`;
+
     if (status) status.textContent = 'Your email application should open now. Review the message before sending.';
-    window.location.href = `mailto:voltavxofficial@gmail.com?subject=${subject}&body=${body}`;
+
+    const link = document.createElement('a');
+    link.href = mailtoUrl;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   });
 </script>
