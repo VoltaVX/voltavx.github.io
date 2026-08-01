@@ -1,0 +1,182 @@
+---
+const workflow = [
+  {
+    number: '01',
+    label: 'Arrival',
+    detail: 'Read the entrance',
+  },
+  {
+    number: '02',
+    label: 'Handoff',
+    detail: 'Establish trust',
+  },
+  {
+    number: '03',
+    label: 'Coordinate',
+    detail: 'Adapt with the team',
+  },
+  {
+    number: '04',
+    label: 'Return',
+    detail: 'Complete the experience',
+  },
+];
+
+const principles = [
+  {
+    number: '01',
+    eyebrow: 'Observation',
+    title: 'Reading the environment',
+    copy:
+      'A busy entrance changes from one moment to the next. I pay attention to traffic, guest behavior, available space, team movement, and the small cues that signal what may be needed next. The work has taught me to look carefully before acting.',
+    icon: 'eye',
+  },
+  {
+    number: '02',
+    eyebrow: 'Trust',
+    title: 'Responsibility made visible',
+    copy:
+      'People hand me something valuable and expect it to be handled with care. I build that trust through clear communication, consistency, attention to detail, and respect for each person’s circumstances.',
+    icon: 'key',
+  },
+  {
+    number: '03',
+    eyebrow: 'Adaptation',
+    title: 'Staying clear under pressure',
+    copy:
+      'Arrivals overlap, priorities shift, and unexpected problems appear quickly. I have learned to remain composed, coordinate with others, and adjust to changing conditions without losing sight of the person waiting in front of me.',
+    icon: 'route',
+  },
+];
+---
+
+<section
+  class="section valet-experience-section"
+  aria-labelledby="valet-experience-title"
+>
+  <div class="page-shell valet-experience">
+    <header class="valet-experience__header">
+      <div class="valet-experience__intro">
+        <p class="eyebrow">Real-world experience</p>
+        <h2 id="valet-experience-title">
+          Understanding people <em>in motion.</em>
+        </h2>
+        <p class="valet-experience__lead">
+          Working as a valet attendant has placed me in environments where
+          trust, timing, communication, and attention matter immediately. Every
+          shift requires me to observe what is happening, respond to changing
+          conditions, and help people move through an experience with less
+          uncertainty.
+        </p>
+
+        <ul
+          class="valet-experience__signals"
+          aria-label="Skills developed through valet work"
+        >
+          <li>Observation</li>
+          <li>Coordination</li>
+          <li>Responsibility</li>
+          <li>Adaptation</li>
+        </ul>
+      </div>
+
+      <aside class="valet-flow" aria-label="A typical valet service sequence">
+        <div class="valet-flow__heading">
+          <span>Live environment</span>
+          <span class="valet-flow__status">
+            <span aria-hidden="true"></span>
+            In motion
+          </span>
+        </div>
+
+        <ol class="valet-flow__list">
+          {workflow.map((step) => (
+            <li class="valet-flow__step">
+              <span class="valet-flow__number" aria-hidden="true">
+                {step.number}
+              </span>
+              <span class="valet-flow__copy">
+                <strong>{step.label}</strong>
+                <small>{step.detail}</small>
+              </span>
+            </li>
+          ))}
+        </ol>
+
+        <svg
+          class="valet-flow__route"
+          viewBox="0 0 260 420"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            class="valet-flow__route-base"
+            d="M52 35 C205 75 48 145 185 205 C250 235 62 300 205 380"
+          ></path>
+          <path
+            class="valet-flow__route-active"
+            d="M52 35 C205 75 48 145 185 205 C250 235 62 300 205 380"
+          ></path>
+        </svg>
+      </aside>
+    </header>
+
+    <div class="valet-principles">
+      {principles.map((principle, index) => (
+        <article
+          class:list={[
+            'valet-card',
+            index === principles.length - 1 && 'valet-card--wide',
+          ]}
+        >
+          <div class="valet-card__topline">
+            <span class="valet-card__number" aria-hidden="true">
+              {principle.number}
+            </span>
+
+            <span class="valet-card__icon" aria-hidden="true">
+              {principle.icon === 'eye' && (
+                <svg viewBox="0 0 48 48">
+                  <path d="M5 24s7-11 19-11 19 11 19 11-7 11-19 11S5 24 5 24Z"></path>
+                  <circle cx="24" cy="24" r="5"></circle>
+                </svg>
+              )}
+
+              {principle.icon === 'key' && (
+                <svg viewBox="0 0 48 48">
+                  <circle cx="17" cy="20" r="9"></circle>
+                  <path d="m24 26 17 17M33 35l4-4M38 40l4-4"></path>
+                </svg>
+              )}
+
+              {principle.icon === 'route' && (
+                <svg viewBox="0 0 48 48">
+                  <circle cx="11" cy="37" r="4"></circle>
+                  <circle cx="37" cy="11" r="4"></circle>
+                  <path d="M14 34c4-8 15-3 17-11 1-5-2-7 3-10"></path>
+                </svg>
+              )}
+            </span>
+          </div>
+
+          <div class="valet-card__content">
+            <p class="eyebrow">{principle.eyebrow}</p>
+            <h3>{principle.title}</h3>
+            <p>{principle.copy}</p>
+          </div>
+
+          <span class="valet-card__accent" aria-hidden="true"></span>
+        </article>
+      ))}
+    </div>
+
+    <footer class="valet-experience__closing">
+      <p>
+        A system is not defined only by how it works under ideal conditions,
+        but by how well it supports people when time, attention, and patience
+        are already limited.
+      </p>
+      <span>Real conditions. Thoughtful responses.</span>
+    </footer>
+  </div>
+</section>
