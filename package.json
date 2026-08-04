@@ -21,7 +21,9 @@
     "check:watch": "astro check --watch --minimumFailingSeverity warning",
     "audit:prod": "npm audit --omit=dev --audit-level=high",
     "test:project": "node scripts/verify-project.mjs",
-    "verify": "npm run audit:prod && npm run build && npm run test:project",
+    "seo:check": "node -e \"if (fs.existsSync('.agents/skills/seo-geo-page/scripts/audit-seo.mjs')) { import('child_process').then(cp => cp.execSync('node .agents/skills/seo-geo-page/scripts/audit-seo.mjs', {stdio: 'inherit'})); }\"",
+    "indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
+    "verify": "npm run audit:prod && npm run build && npm run test:project && npm run seo:check",
     "security:check": "npm run verify",
     "zip": "bash scripts/zip_project.sh"
   },
