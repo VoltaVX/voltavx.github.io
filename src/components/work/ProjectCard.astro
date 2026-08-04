@@ -5,7 +5,7 @@ import ProjectVisual from '@/components/ui/ProjectVisual.astro';
 
 interface Props {
   project: CollectionEntry<'projects'>;
-  size?: 'lead' | 'medium' | 'small';
+  size?: 'medium' | 'small';
 }
 const { project, size = 'small' } = Astro.props;
 const data = project.data;
@@ -34,7 +34,7 @@ const data = project.data;
       <a class="text-link" href={`/work/${data.slug}/`}>
         {data.status === 'Under Construction' ? 'View concept' : 'View case study'} <span aria-hidden="true">↗</span>
       </a>
-      {data.liveUrl && <a class="text-link text-link--muted" href={data.liveUrl} target="_blank" rel="noreferrer">Live website <span aria-hidden="true">↗</span></a>}
+      {data.liveUrl && <a class="text-link text-link--muted" href={data.liveUrl} target="_blank" rel="noopener noreferrer">Live website <span aria-hidden="true">↗</span></a>}
     </div>
   </div>
 </article>

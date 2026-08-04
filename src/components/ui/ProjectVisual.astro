@@ -5,49 +5,18 @@ interface Props {
   eager?: boolean;
 }
 const { cover, alt, eager = false } = Astro.props;
-const isArt = cover.startsWith('art:');
-const kind = isArt ? cover.split(':')[1] : '';
 ---
 
-{isArt ? (
-  <div class:list={['project-art', `project-art--${kind}`]} role="img" aria-label={alt}>
-    {kind === 'research' && (
-      <div class="research-art">
-        <span class="research-art__source">One transcript</span>
-        <div class="research-art__line" aria-hidden="true"></div>
-        <div class="research-art__labels" aria-hidden="true">
-          <span>H–H</span><span>H–AI</span><span>AI–AI</span>
-        </div>
-      </div>
-    )}
-    {kind === 'operations' && (
-      <div class="operations-art" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
-      </div>
-    )}
-    {kind === 'blueprint' && (
-      <div class="blueprint-art" aria-hidden="true">
-        <span class="blueprint-art__label">MODEL / 01</span>
-        <svg viewBox="0 0 420 160" focusable="false">
-          <polyline points="0,125 55,120 105,88 150,103 205,55 250,70 305,35 360,52 420,22"></polyline>
-          <line x1="0" y1="145" x2="420" y2="145"></line>
-        </svg>
-        <span class="blueprint-art__progress">System definition · 35%</span>
-      </div>
-    )}
-  </div>
-) : (
-  <picture>
-    <source srcset={`${cover}.avif`} type="image/avif" />
-    <source srcset={`${cover}.webp`} type="image/webp" />
-    <img
-      src={`${cover}.webp`}
-      alt={alt}
-      width="1600"
-      height="960"
-      loading={eager ? 'eager' : 'lazy'}
-      fetchpriority={eager ? 'high' : 'auto'}
-      decoding="async"
-    />
-  </picture>
-)}
+<picture>
+  <source srcset={`${cover}.avif`} type="image/avif" />
+  <source srcset={`${cover}.webp`} type="image/webp" />
+  <img
+    src={`${cover}.webp`}
+    alt={alt}
+    width="1600"
+    height="960"
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : 'auto'}
+    decoding="async"
+  />
+</picture>

@@ -1,0 +1,4 @@
+Contact: mailto:voltavxofficial@gmail.com
+Canonical: https://voltavx.com/.well-known/security.txt
+Preferred-Languages: en, es
+Expires: 2027-08-03T23:59:59Z

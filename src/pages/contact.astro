@@ -1,5 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PUBLIC_EMAIL_ADDRESS, PUBLIC_PHONE_NUMBER } from 'astro:env/client';
+
+const emailAddress = PUBLIC_EMAIL_ADDRESS.trim();
+if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAddress)) {
+  throw new Error('PUBLIC_EMAIL_ADDRESS must be a valid email address.');
+}
+const phoneNumber = PUBLIC_PHONE_NUMBER.replace(/[^0-9+]/g, '');
+const initialMailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent('Portfolio inquiry')}`;
 ---
 
 <BaseLayout
@@ -20,11 +28,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     <div class="page-shell contact-layout">
       <div>
         <div class="contact-details">
-          <a href="mailto:voltavxofficial@gmail.com">
+          <a href={initialMailtoUrl}>
             <strong>Email directly</strong>
-            <span>voltavxofficial@gmail.com</span>
+            <span>{emailAddress}</span>
           </a>
-          <a href="https://www.linkedin.com/in/juan-lopez04" target="_blank" rel="noreferrer">
+          <a href="https://www.linkedin.com/in/juan-lopez04" target="_blank" rel="noopener noreferrer">
             <strong>LinkedIn</strong>
             <span>Connect with Juan</span>
           </a>
@@ -34,14 +42,14 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
           </a>
         </div>
       </div>
-      <form class="contact-form" data-contact-form>
+      <form class="contact-form" data-contact-form data-email={emailAddress} data-phone={phoneNumber} autocomplete="on">
         <div class="form-field">
           <label for="name">Your name</label>
-          <input id="name" name="name" type="text" autocomplete="name" required />
+          <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required />
         </div>
         <div class="form-field">
           <label for="email">Your email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required />
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required />
         </div>
         <div class="form-field">
           <label for="topic">What would you like to discuss?</label>
@@ -55,25 +63,30 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
         </div>
         <div class="form-field">
           <label for="message">A little context</label>
-          <textarea id="message" name="message" required aria-describedby="message-note"></textarea>
-          <p id="message-note" class="form-note">Please do not include confidential health or client information.</p>
+          <textarea id="message" name="message" minlength="10" maxlength="3000" required aria-describedby="message-note"></textarea>
+          <p id="message-note" class="form-note">Up to 3,000 characters. Please do not include confidential health or client information.</p>
         </div>
-        <button class="button button--primary" type="submit">Prepare message <span aria-hidden="true">↗</span></button>
-        <p class="form-note" aria-live="polite" data-form-status>Filling out this form prepares your message for 1-click sending.</p>
-        
-        <div class="contact-actions" data-contact-actions hidden>
-          <p class="form-note form-note--highlight">Choose your preferred method to send:</p>
+
+        <div class="contact-actions" data-contact-actions>
+          <p class="form-note form-note--highlight">Send your message with 1 click using your preferred app:</p>
           <div class="contact-actions__buttons">
-            <a class="button button--primary" data-mailto-link href="#" target="_blank">
-              Open Mail App <span aria-hidden="true">✉️</span>
+            <a class="button button--primary" data-action="mailto" href={initialMailtoUrl}>
+              Open Default Mail App <span aria-hidden="true">✉️</span>
             </a>
-            <a class="button button--secondary" data-gmail-link href="#" target="_blank" rel="noreferrer">
+            {phoneNumber && (
+              <a class="button button--primary" data-action="sms" href={`sms:${phoneNumber}`}>
+                Open Text App (SMS) <span aria-hidden="true">💬</span>
+              </a>
+            )}
+            <a class="button button--secondary" data-action="gmail" href="#" target="_blank" rel="noopener noreferrer">
               Open in Gmail Web <span aria-hidden="true">🌐</span>
             </a>
-            <button class="button button--secondary" data-copy-btn type="button">
+            <button class="button button--secondary" data-action="copy" type="button">
               Copy Email & Text <span aria-hidden="true">📋</span>
             </button>
           </div>
+          <p class="form-note">Native email asks your browser and operating system to open their configured mail handler. Nothing opened? Check your default email app, use Gmail Web, or copy the message.</p>
+          <p class="form-note" aria-live="polite" data-form-status></p>
         </div>
       </form>
     </div>
@@ -81,51 +94,5 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
-  const status = document.querySelector<HTMLElement>('[data-form-status]');
-  const actionsBox = document.querySelector<HTMLElement>('[data-contact-actions]');
-  const mailtoLink = document.querySelector<HTMLAnchorElement>('[data-mailto-link]');
-  const gmailLink = document.querySelector<HTMLAnchorElement>('[data-gmail-link]');
-  const copyBtn = document.querySelector<HTMLButtonElement>('[data-copy-btn]');
-
-  let preparedText = '';
-
-  form?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (!form.reportValidity()) return;
-    const values = new FormData(form);
-    const topic = (values.get('topic') as string) ?? 'Project';
-    const name = (values.get('name') as string) ?? '';
-    const email = (values.get('email') as string) ?? '';
-    const message = (values.get('message') as string) ?? '';
-
-    const subjectText = `Portfolio inquiry: ${topic}`;
-    const bodyText = `Name: ${name}\r\nEmail: ${email}\r\nTopic: ${topic}\r\n\r\nMessage:\r\n${message}`;
-
-    preparedText = `To: voltavxofficial@gmail.com\r\nSubject: ${subjectText}\r\n\r\n${bodyText}`;
-
-    const mailtoUrl = `mailto:voltavxofficial@gmail.com?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`;
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=voltavxofficial@gmail.com&su=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`;
-
-    if (mailtoLink) mailtoLink.href = mailtoUrl;
-    if (gmailLink) gmailLink.href = gmailUrl;
-    if (actionsBox) actionsBox.hidden = false;
-
-    if (status) status.textContent = 'Message prepared! Choose how you would like to send it below:';
-
-    // Attempt direct trigger
-    window.location.href = mailtoUrl;
-  });
-
-  copyBtn?.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(preparedText);
-      copyBtn.textContent = 'Copied to Clipboard! ✓';
-      setTimeout(() => {
-        copyBtn.innerHTML = 'Copy Email & Text <span aria-hidden="true">📋</span>';
-      }, 3000);
-    } catch {
-      alert('Copied message text:\n\n' + preparedText);
-    }
-  });
+  import '../scripts/contact';
 </script>

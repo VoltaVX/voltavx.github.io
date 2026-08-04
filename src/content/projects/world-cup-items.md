@@ -1,0 +1,82 @@
+---
+title: "World Cup Items"
+slug: "world-cup-items"
+summary: "A seasonal international storefront organized around country pride and match-day rituals."
+longerDescription: "The Shopify storefront combines global navigation, country and currency settings, merchandise taxonomy, support information, and campaign energy without sacrificing product clarity."
+category: "Commerce & Brand Systems"
+industry: "International football-fan merchandise"
+role: "Independent commerce strategy, art direction, Shopify theme development, and store setup"
+responsibilities:
+  - "Commerce strategy and information architecture"
+  - "Visual design and Shopify theme development"
+  - "Responsive storefront implementation"
+  - "Product taxonomy and merchandising"
+  - "Payment, email, domain, and launch infrastructure"
+platform: "Shopify"
+platformVerificationStatus: "Confirmed"
+projectType: "Independent e-commerce project"
+projectTypeVerificationStatus: "Supplied by Juan"
+domain: "worldcupitems.com"
+domainRegistrationDate: "2026-06-02T00:36:32Z"
+approximateProjectYear: "2026"
+dateSource: "Approx. 2026, based on domain registration records."
+lastReviewed: "2026-07-26"
+status: "Independent Commerce Project"
+featured: true
+featuredOrder: 3
+liveUrl: "https://www.worldcupitems.com/"
+cover: "/images/projects/world-cup-items"
+coverAlt: "World Cup Items storefront with international fan merchandise and country-based shopping"
+audience:
+  - "International football supporters"
+  - "Match-day hosts and gift shoppers"
+problem: "A seasonal global catalog needed excitement, localization, and practical purchasing information to coexist."
+objectives:
+  - "Organize products around countries, rituals, and use"
+  - "Support country and currency selection"
+  - "Make shipping, returns, and common questions easy to find"
+informationArchitecture:
+  - "Catalog and search"
+  - "Country and currency selection"
+  - "Featured products and new arrivals"
+  - "Account and cart"
+  - "Shipping, returns, support, and FAQs"
+designDecisions:
+  - "Used country-based visual storytelling without implying official affiliation"
+  - "Balanced promotional energy with legible product details"
+  - "Placed objection-handling information near commerce tasks"
+infrastructure:
+  - "Shopify storefront"
+  - "Shopify theme development"
+  - "Product variants and merchandising"
+  - "Payment and international shopping setup"
+  - "Business email and domain configuration"
+accessibilityConsiderations:
+  - "Product names remain primary"
+  - "Country and currency controls use text labels"
+  - "Responsive commerce controls"
+behavioralConcepts:
+  - "Relevant grouping for product discovery"
+  - "Clear feedback in cart and selection states"
+outcomes:
+  - "A live independent commerce project"
+limitations:
+  - "No official FIFA affiliation or licensing is claimed"
+  - "No sales or conversion metrics are published"
+reflection: "A global storefront needs energy, but people still need calm, concrete answers before they can make an informed purchase."
+relatedProjects:
+  - "vx-nexus"
+verificationNote: "No earlier capture was returned by the Wayback availability record checked on July 26, 2026. The current domain record and live Shopify storefront align with a 2026 independent project timeframe."
+---
+
+## Context
+
+World Cup Items is a seasonal commerce experience for country-inspired fan apparel, match-day accessories, cooling products, watch-party items, and gifts.
+
+## Juan's role
+
+Juan independently developed the Shopify theme and handled strategy, structure, visual design, responsive implementation, merchandising, store configuration, business email, payments, domain setup, and launch.
+
+## Important decision
+
+The store uses campaign energy to help people enter the catalog, then returns attention to product variants, shipping, returns, and support.

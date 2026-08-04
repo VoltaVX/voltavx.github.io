@@ -35,19 +35,5 @@ const current = Astro.url.pathname;
 </header>
 
 <script>
-  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
-  const header = document.querySelector<HTMLElement>('[data-header]');
-
-  toggle?.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!open));
-    header?.toggleAttribute('data-menu-open', !open);
-  });
-
-  document.querySelectorAll('#primary-navigation a').forEach((link) => {
-    link.addEventListener('click', () => {
-      toggle?.setAttribute('aria-expanded', 'false');
-      header?.removeAttribute('data-menu-open');
-    });
-  });
+  import '../../scripts/header';
 </script>

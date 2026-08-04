@@ -17,5 +17,43 @@
       "streetsidesoftware.code-spell-checker",
       "usernamehw.errorlens"
     ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Astro: Develop",
+        "type": "npm",
+        "script": "dev",
+        "isBackground": true,
+        "problemMatcher": []
+      },
+      {
+        "label": "Astro: Debug sidecar",
+        "type": "npm",
+        "script": "dev:agent",
+        "problemMatcher": []
+      },
+      {
+        "label": "Astro: Check",
+        "type": "npm",
+        "script": "check",
+        "problemMatcher": []
+      },
+      {
+        "label": "Astro: Verify release",
+        "type": "npm",
+        "script": "verify",
+        "problemMatcher": [],
+        "group": { "kind": "build", "isDefault": true }
+      },
+      {
+        "label": "Astro: Preview",
+        "type": "npm",
+        "script": "preview",
+        "isBackground": true,
+        "problemMatcher": []
+      }
+    ]
   }
 }

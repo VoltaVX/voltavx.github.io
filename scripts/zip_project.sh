@@ -1,49 +1,54 @@
 #!/usr/bin/env bash
-# Script to zip up the project excluding files established in .gitignore
 
-set -e
+set -euo pipefail
 
-# Change to the repository root directory
-REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
-cd "$REPO_ROOT"
-
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 OUTPUT_FILE="${1:-project.zip}"
 
-python3 - "$OUTPUT_FILE" << 'EOF'
-import os
+if [[ "$OUTPUT_FILE" != /* ]]; then
+  OUTPUT_FILE="$PROJECT_ROOT/$OUTPUT_FILE"
+fi
+
+python3 - "$PROJECT_ROOT" "$OUTPUT_FILE" <<'PY'
+from pathlib import Path
 import sys
-import subprocess
 import zipfile
 
-output_filename = sys.argv[1]
+project_root = Path(sys.argv[1]).resolve()
+output_file = Path(sys.argv[2]).resolve()
 
-# 1. Candidate files: tracked files + untracked non-ignored files
-files_raw = subprocess.check_output(
-    ["git", "ls-files", "-co", "--exclude-standard"], text=True
-).splitlines()
+excluded_directories = {
+    '.git', '.astro', '.debug', 'dist', 'node_modules', 'coverage',
+    '.idea', '.vscode', '.netlify', '.vercel', '.wrangler', '__MACOSX',
+}
+excluded_names = {'.DS_Store', 'Thumbs.db', '.dev.vars'}
+excluded_suffixes = ('.zip', '.tar.gz', '.tgz', '.log', '.pem', '.key', '.tsbuildinfo')
 
-# 2. Filter using git check-ignore --no-index to respect .gitignore
-proc = subprocess.Popen(
-    ["git", "check-ignore", "--stdin", "--no-index"],
-    stdin=subprocess.PIPE,
-    stdout=subprocess.PIPE,
-    text=True
-)
-ignored_raw, _ = proc.communicate(input="\n".join(files_raw))
-ignored_set = set(ignored_raw.splitlines())
+def include(path: Path) -> bool:
+    relative = path.relative_to(project_root)
+    if any(part in excluded_directories for part in relative.parts):
+        return False
+    if path == output_file or path.is_symlink() or not path.is_file():
+        return False
+    if path.name in excluded_names or path.name.startswith('._'):
+        return False
+    if path.name == '.env' or (path.name.startswith('.env.') and path.name != '.env.example'):
+        return False
+    if path.name.startswith('.dev.vars.'):
+        return False
+    return not path.name.endswith(excluded_suffixes)
 
-# 3. Exclude ignored files, existing zip files, and directories
-files_to_zip = [
-    f for f in files_raw
-    if f not in ignored_set and not f.endswith(".zip") and f != output_filename and os.path.isfile(f)
-]
+files = sorted(path for path in project_root.rglob('*') if include(path))
+output_file.parent.mkdir(parents=True, exist_ok=True)
 
-out_path = os.path.abspath(output_filename)
+with zipfile.ZipFile(output_file, 'w', zipfile.ZIP_DEFLATED, strict_timestamps=False) as archive:
+    for path in files:
+        info = zipfile.ZipInfo(path.relative_to(project_root).as_posix(), (1980, 1, 1, 0, 0, 0))
+        info.compress_type = zipfile.ZIP_DEFLATED
+        info.external_attr = (path.stat().st_mode & 0o777) << 16
+        archive.writestr(info, path.read_bytes())
 
-with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as zf:
-    for f in files_to_zip:
-        zf.write(f, f)
-
-size_mb = os.path.getsize(out_path) / (1024 * 1024)
-print(f"Successfully zipped {len(files_to_zip)} files to '{out_path}' ({size_mb:.2f} MB)")
-EOF
+size_mb = output_file.stat().st_size / (1024 * 1024)
+print(f"Archived {len(files)} files to '{output_file}' ({size_mb:.2f} MB)")
+PY

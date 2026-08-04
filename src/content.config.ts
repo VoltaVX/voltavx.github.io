@@ -15,7 +15,7 @@ const status = z.enum([
 ]);
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
@@ -44,7 +44,6 @@ const projects = defineCollection({
     liveUrl: z.url().optional(),
     cover: z.string(),
     coverAlt: z.string(),
-    gallery: z.array(z.string()).default([]),
     audience: z.array(z.string()),
     problem: z.string(),
     objectives: z.array(z.string()),
@@ -62,7 +61,7 @@ const projects = defineCollection({
 });
 
 const research = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/research' }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/research' }),
   schema: z.object({
     title: z.string(),
     shortTitle: z.string(),
