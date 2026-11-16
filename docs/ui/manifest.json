@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "authority": "design.md",
+  "required": [
+    "foundations"
+  ],
+  "components": [
+    {
+      "id": "foundations",
+      "title": "Foundations, spacing, materials and preferences",
+      "spec": "components/foundations.md",
+      "css": "src/styles/tokens.css",
+      "selectors": [
+        ".container",
+        ".section",
+        ".glass",
+        ".card"
+      ]
+    },
+    {
+      "id": "typography-content",
+      "title": "Typography and text elements",
+      "spec": "components/typography-content.md",
+      "css": "src/styles/global.css",
+      "selectors": [
+        ".display",
+        ".eyebrow",
+        ".lead",
+        ".prose"
+      ]
+    },
+    {
+      "id": "controls-feedback",
+      "title": "Controls, forms, data and feedback",
+      "spec": "components/controls-feedback.md",
+      "css": "src/styles/global.css",
+      "selectors": [
+        ".button",
+        ".field",
+        ".notice",
+        ".table-scroll",
+        ".dialog"
+      ]
+    },
+    {
+      "id": "shell",
+      "title": "Navigation, footer and route shell",
+      "spec": "components/shell.md",
+      "css": "src/styles/scaffold.css",
+      "selectors": [
+        ".site-header",
+        ".site-footer",
+        ".section-heading"
+      ]
+    },
+    {
+      "id": "hero",
+      "title": "Hero, portrait and discipline strip",
+      "spec": "components/hero.md",
+      "css": "src/styles/portfolio.css",
+      "selectors": [
+        ".portfolio-hero",
+        ".hero-portrait",
+        ".discipline-strip",
+        ".portfolio-introduction",
+        ".discipline-panel"
+      ]
+    },
+    {
+      "id": "research",
+      "title": "Research spotlight and study diagram",
+      "spec": "components/research.md",
+      "css": "src/styles/portfolio.css",
+      "selectors": [
+        ".research-spotlight",
+        ".research-diagram",
+        ".research-meta"
+      ]
+    },
+    {
+      "id": "behavior",
+      "title": "Behavior statement and research stages",
+      "spec": "components/behavior.md",
+      "css": "src/styles/portfolio.css",
+      "selectors": [
+        ".behavior-statement",
+        ".research-stages",
+        ".behavior-feature"
+      ]
+    },
+    {
+      "id": "pathway",
+      "title": "Five-stage pathway, examples and locked copy",
+      "spec": "components/pathway.md",
+      "css": "src/styles/portfolio.css",
+      "selectors": [
+        ".pathway-list",
+        ".pathway-card",
+        ".pathway-evidence",
+        ".filter-example",
+        ".confirmation-example",
+        ".pathway-caption"
+      ]
+    },
+    {
+      "id": "projects",
+      "title": "Selected work, filters and project cards",
+      "spec": "components/projects.md",
+      "css": "src/styles/portfolio.css",
+      "selectors": [
+        ".work-grid",
+        ".project-card",
+        ".work-filters"
+      ]
+    },
+    {
+      "id": "ecosystem-services",
+      "title": "Project ecosystem and service cards",
+      "spec": "components/ecosystem-services.md",
+      "css": "src/styles/portfolio.css",
+      "selectors": [
+        ".ecosystem-grid",
+        ".ecosystem-row",
+        ".services-grid",
+        ".service-card"
+      ]
+    },
+    {
+      "id": "about-contact",
+      "title": "About, tools, resume and contact",
+      "spec": "components/about-contact.md",
+      "css": "src/styles/portfolio.css",
+      "selectors": [
+        ".about-grid",
+        ".tool-list",
+        ".contact-panel",
+        ".contact-section"
+      ]
+    },
+    {
+      "id": "media-diagrams",
+      "title": "Images, captions, icons and diagrams",
+      "spec": "components/media-diagrams.md",
+      "css": "src/styles/global.css",
+      "selectors": [
+        ".media-frame",
+        ".portrait-caption"
+      ]
+    },
+    {
+      "id": "detail-pages",
+      "title": "Migrated pages and indexes",
+      "spec": "components/detail-pages.md",
+      "css": "src/styles/portfolio.css",
+      "selectors": [
+        ".detail-page",
+        ".m-case-layout",
+        ".m-work-index-grid"
+      ]
+    }
+  ]
+}

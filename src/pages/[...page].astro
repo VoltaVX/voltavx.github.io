@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import pages from '../content/migrated-pages.json';
+import StudyDiagram from '../components/StudyDiagram.astro';
+import { withBase } from '../lib/links';
+export function getStaticPaths() { return pages.map(page => ({ params: { page: page.slug }, props: { page } })); }
+const { page } = Astro.props;
+const html = page.html.replace(/(href|src)="(\/[^\"]*)"/g, (_match: string, attr: string, path: string) => `${attr}="${withBase(path)}"`);
+---
+<BaseLayout title={page.title} description={page.description}>
+  <div class:list={["detail-page", { "about-page": page.slug === "about" }]}>{html.split('<!--shared-study-diagram-->').map((part: string, index: number) => <>{index > 0 && <StudyDiagram detail />}<Fragment set:html={part} /></>)}</div>
+</BaseLayout>
+<script>
+ import '../components/detail-pages';
+</script>

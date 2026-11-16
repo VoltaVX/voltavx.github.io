@@ -1,0 +1,29 @@
+---
+import { withBase } from '../lib/links';
+import type { WorkCategory } from '../lib/work-filter';
+
+interface Props {
+  title: string;
+  slug: string;
+  category: WorkCategory;
+  categoryLabel: string;
+  status: string;
+  description: string;
+  imageAlt: string;
+  featured?: boolean;
+  concept?: boolean;
+}
+const { title, slug, category, categoryLabel, status, description, imageAlt, featured = false, concept = false } = Astro.props;
+const href = withBase(`/work/${slug}/`);
+---
+<article class:list={['project-card', { 'project-card--featured': featured }]} data-work-card data-category={category}>
+  <img src={withBase(`/images/projects/${slug}.webp`)} width="1600" height="960" loading="lazy" decoding="async" alt={imageAlt} />
+  <div class="project-card-body">
+    <h3>{title}</h3>
+    <p class="project-meta">{categoryLabel} <span aria-hidden="true">·</span> {status}</p>
+    <p class="project-description">{description}</p>
+    <a class="text-link" href={href}>
+      {concept ? 'View concept' : 'View case study'}<span class="visually-hidden">: {title}</span><span aria-hidden="true"> ↗</span>
+    </a>
+  </div>
+</article>

@@ -1,0 +1,29 @@
+---
+import { withBase } from '../lib/links';
+import ActionLink from './ActionLink.astro';
+import StudyDiagram from './StudyDiagram.astro';
+const studyUrl = withBase('/research/ai-misattribution/');
+
+---
+<section class="container section research-spotlight" id="research" aria-labelledby="research-title">
+  <div class="intro-copy research-copy">
+    <p class="eyebrow">Research spotlight</p>
+    <h2 id="research-title">AI (Mis)attribution</h2>
+    <p class="lead study-question">Do people judge the same interaction differently when they believe it was written by artificial intelligence?</p>
+    <p class="study-summary muted">In our online study, participants rated a conversation as more natural when they believed both speakers were human than when they believed one was AI. Every condition used the same transcript.</p>
+    <ul role="list" class="research-meta" aria-label="Study details">
+      <li><strong>Sample</strong> N = 123</li>
+      <li><strong>Conditions</strong> Three</li>
+      <li><strong>Term</strong> Fall 2025</li>
+    </ul>
+    <ul role="list" class="tool-list" aria-label="Research tools">
+      <li>Qualtrics</li>
+      <li>IBM SPSS</li>
+    </ul>
+    <div class="actions">
+      <ActionLink href={studyUrl}>Read the study</ActionLink>
+      <a class="text-link" href={`${studyUrl}#study-one-design`}>Explore the method <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <StudyDiagram />
+</section>

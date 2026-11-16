@@ -1,0 +1,164 @@
+/* C-0003. Project values; Apple does not prescribe these web measurements.
+   UI authority: docs/ui/design.md. Existing aliases remain public. */
+@layer tokens, base, layout, components, utilities;
+
+@layer tokens {
+  :root {
+    color-scheme: light;
+    --color-paper: #f5f5f2;
+    --color-white: #ffffff;
+    --color-surface: #fcfcfa;
+    --color-ink: #171922;
+    --color-muted: #585d70;
+    --weight-heading: 700;
+    --tracking-heading: -0.035em;
+    --color-line: #dfe0e5;
+    --color-sage: #ecebf7;
+    --color-lime: #ecebf7;
+    --color-accent: #5147d9;
+    --color-hover: #4036b7;
+    --color-focus: #5147d9;
+    --color-control-line: #747783;
+    --color-danger: #a51e2c;
+    --color-success: #176342;
+    --color-warning: #795000;
+    --color-rail: #d9d8e9;
+    --font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: var(--font-body);
+    --font-accent: Georgia, 'Times New Roman', serif;
+    --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+    --text-caption: 0.875rem;
+    --text-body: 1.125rem;
+    --text-card: 1rem;
+    --text-lead: 1.125rem;
+    --text-eyebrow: 0.75rem;
+    --text-button: 0.9375rem;
+    --text-h1: 4rem;
+    --text-h2: 3rem;
+    --text-section: 2.5rem;
+    --text-h3: 1.375rem;
+    --text-h4: 1.25rem;
+    --text-h5: 1.125rem;
+    --text-h6: 1rem;
+    --leading-body: 1.555556;
+    --leading-heading: 1.083334;
+    --leading-display: 1.0625;
+    --space-0: 0;
+    --space-half: 0.25rem;
+    --space-1: 0.5rem;
+    --space-1-5: 0.75rem;
+    --space-2: 1rem;
+    --space-2-5: 1.25rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-5: 2.5rem;
+    --space-6: 3rem;
+    --space-8: 4rem;
+    --space-10: 5rem;
+    --space-12: 6rem;
+    --radius-sm: 0.75rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-pill: 999px;
+    --gutter: 1.25rem;
+    --content-width: 75rem;
+    --section-space: 3.5rem;
+    --related-space: 4rem;
+    --card-padding: 1.5rem;
+    --panel-padding: 2rem;
+    --grid-gap: 1.5rem;
+    --heading-gap: 2rem;
+    --caption-gap: 1rem;
+    --pathway-gap: 6rem;
+    --pathway-caption-gap: 1rem;
+    --pathway-caption-offset: calc(var(--pathway-caption-gap) + 0.625rem);
+    --pathway-branch-stroke: 1.5px;
+    --pathway-target-size: 6px;
+    --target-min: 2.75rem;
+    --target-primary: 3rem;
+    --control-padding-block: 0.75rem;
+    --control-padding-inline: 1.5rem;
+    --field-padding: 0.75rem 1rem;
+    --shadow-card: 0 8px 24px rgb(23 25 34 / 0.03);
+    --shadow-glass: 0 12px 32px rgb(23 25 34 / 0.08);
+    --shadow-dialog: 0 24px 64px rgb(23 25 34 / 0.16);
+    --glass-solid: var(--color-surface);
+    --glass-bg: var(--glass-solid);
+    --glass-border: var(--color-line);
+    --glass-filter: none;
+    --content-bg: var(--color-surface);
+    --content-border: var(--color-line);
+    --content-filter: none;
+    --content-shadow: var(--shadow-card);
+    --glass-primary: var(--color-accent);
+    --glass-shadow: var(--shadow-glass);
+    --duration-fast: 120ms;
+    --duration-medium: 180ms;
+    --duration-press: 90ms;
+    --project-hover-lift: -3px;
+    --project-hover-scale: 1.02;
+    --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --page-background: radial-gradient(ellipse at 95% 0%, rgb(81 71 217 / .12), transparent 45rem), repeating-linear-gradient(155deg, transparent 0 45rem, rgb(81 71 217 / .035) 60rem, transparent 90rem), var(--color-paper);
+    --z-overlay: 20;
+    --z-skip: 100;
+  }
+  @media (min-width: 48rem) {
+    :root { --gutter: 1.5rem; --section-space: 4.5rem; --text-h1: 3rem; --text-h2: 2.5rem; --leading-heading: 1.1; --leading-display: 1.083334; }
+  }
+  @media (min-width: 80rem) {
+    :root { --gutter: 2.5rem; --section-space: 6rem; --text-h1: 4rem; --text-h2: 3rem; --leading-heading: 1.083334; --leading-display: 1.0625; }
+  }
+  @media (max-width: 47.999rem) {
+    :root { --text-h1: 2.5rem; --text-h2: 2rem; --text-section: 2rem; --text-body: 1rem; --leading-body: 1.5; --leading-heading: 1.125; --card-padding: 1.25rem; --leading-display: 1.1; }
+  }
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    :root { --glass-bg: rgb(255 255 255 / 0.60); --glass-border: rgb(255 255 255 / 0.65); --glass-filter: blur(24px) saturate(130%); --content-bg: rgb(255 255 255 / 0.70); --content-border: rgb(255 255 255 / 0.85); --content-filter: blur(18px) saturate(120%); --content-shadow: inset 0 1px 0 rgb(255 255 255 / 0.8), 0 8px 24px rgb(23 25 34 / 0.05); }
+  }
+}
+
+/* C-0005: resize the composition before changing its column arrangement.
+   Rem floors preserve user text preferences. These values override old steps. */
+@layer tokens {
+  :root {
+    --text-h1: clamp(2.25rem, calc(5.357143vw - 0.321428rem), 4.5rem);
+    --text-h2: clamp(2.25rem, calc(2.678572vw + 0.964286rem), 3.375rem);
+    --text-section: clamp(2.25rem, calc(1.339286vw + 1.607143rem), 2.8125rem);
+    --text-h3: clamp(1.375rem, calc(0.595239vw + 1.089286rem), 1.625rem);
+    --text-h4: 1.375rem;
+    --text-h5: 1.25rem;
+    --text-h6: 1.125rem;
+    --text-body: clamp(1rem, calc(0.297620vw + 0.857143rem), 1.125rem);
+    --text-lead: var(--text-body);
+    --behavior-start: #eeefff;
+    --behavior-end: #edf3f4;
+    --behavior-glow: rgb(81 71 217 / 0.13);
+    --feature-background: radial-gradient(circle at 100% 0%, var(--behavior-glow), transparent 55%), linear-gradient(135deg, var(--behavior-start), var(--color-paper) 55%, var(--behavior-end));
+    --hero-sidebar-min: 6.5rem;
+    --mobile-header-height: 3rem;
+    --mobile-brand-size: 1.75rem;
+    --discipline-label-size: clamp(0.875rem, 3.5vw, 1rem);
+    --hero-mobile-ratio: 2;
+    --content-material-wash: linear-gradient(rgb(252 252 250 / .32), rgb(252 252 250 / .12));
+    --mobile-hero-offset: 3rem;
+    --mobile-research-gap: 3rem;
+    --mobile-pathway-intro-gap: 4rem;
+    --mobile-services-gap: 4rem;
+    --pathway-mobile-branch: 2.5rem;
+    --pathway-arrow-size: 0.5rem;
+    --feature-radius: 2rem;
+    --feature-padding: clamp(1.5rem, 4.444445vw, 4rem);
+    --feature-padding-end: var(--feature-padding);
+    --heading-gap: clamp(1.5rem, 2.222223vw, 2rem);
+    --intro-strip-gap: clamp(1.5rem, 2.777778vw, 2.5rem);
+    --pathway-stage-gap: clamp(4rem, 6.666667vw, 6rem);
+    --pathway-intro-gap: clamp(2rem, 3.333334vw, 3rem);
+    --media-inset: clamp(0.5rem, 0.833334vw, 0.75rem);
+    --project-title-gap: clamp(1rem, 1.388889vw, 1.25rem);
+    --editorial-gap: clamp(1.25rem, 3.333334vw, 3rem);
+    --grid-gap: clamp(1rem, 1.666667vw, 1.5rem);
+    --card-padding: clamp(1rem, 1.666667vw, 1.5rem);
+    --panel-padding: clamp(1.25rem, 2.222223vw, 2rem);
+    --section-space: clamp(4rem, 8.333334vw, 7.5rem);
+    --related-space: var(--section-space);
+  }
+}

@@ -1,40 +1,29 @@
 {
-  "name": "juan-lopez-portfolio",
-  "version": "1.0.0",
+  "name": "astro-minimal-delta",
+  "version": "0.1.0",
   "private": true,
+  "type": "module",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24 <25"
   },
   "scripts": {
-    "dev": "node scripts/astro-cli.mjs dev",
-    "dev:container": "node scripts/astro-cli.mjs dev --host 0.0.0.0",
-    "dev:agent": "node scripts/astro-cli.mjs dev --background",
-    "dev:status": "node scripts/astro-cli.mjs dev status",
-    "dev:logs": "node scripts/astro-cli.mjs dev logs",
-    "dev:logs:follow": "node scripts/astro-cli.mjs dev logs --follow",
-    "dev:stop": "node scripts/astro-cli.mjs dev stop",
-    "dev:info": "node scripts/astro-cli.mjs info",
-    "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
-    "debug:build": "ASTRO_TELEMETRY_DISABLED=1 astro build --devOutput",
-    "preview": "astro preview --host 0.0.0.0 --port 4322",
-    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check --minimumFailingSeverity warning",
-    "check:watch": "astro check --watch --minimumFailingSeverity warning",
-    "audit:prod": "npm audit --omit=dev --audit-level=high",
-    "test:project": "node scripts/verify-project.mjs",
-    "seo:check": "node -e \"if (fs.existsSync('.agents/skills/seo-geo-page/scripts/audit-seo.mjs')) { import('child_process').then(cp => cp.execSync('node .agents/skills/seo-geo-page/scripts/audit-seo.mjs', {stdio: 'inherit'})); }\"",
-    "indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
-    "verify": "npm run audit:prod && npm run build && npm run test:project && npm run seo:check",
-    "security:check": "npm run verify",
-    "zip": "bash scripts/zip_project.sh"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "node --test tests/unit/*.test.mjs",
+    "test:e2e": "playwright test",
+    "validate": "npm run check && npm test && npm run test:e2e",
+    "check:ui": "node tools/check-ui-contract.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "3.7.3",
-    "astro": "7.1.6"
+    "astro": "7.3.8"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
-    "typescript": "5.9.3"
-  },
-  "type": "module",
-  "displayName": "Juan Lopez Portfolio"
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.64.0",
+    "@types/node": "24.19.1",
+    "typescript": "6.0.3"
+  }
 }

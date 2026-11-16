@@ -1,0 +1,27 @@
+---
+interface Props { detail?: boolean; }
+const { detail = false } = Astro.props;
+const conditions = [
+  { label: 'H–H', name: 'Human–Human', description: 'Both speakers labeled human' },
+  { label: 'H–AI', name: 'Human–AI', description: 'One speaker labeled AI' },
+  { label: 'AI–AI', name: 'AI–AI', description: 'Both speakers labeled AI' },
+];
+---
+  <figure class="research-diagram" aria-label={detail ? "The same transcript was presented under Human–Human, Human–AI, and AI–AI labels" : undefined} aria-labelledby={detail ? undefined : "study-diagram-caption"}>
+    <div class="research-diagram-flow">
+      <div class="research-transcript">
+        <span class:list={[{ eyebrow: !detail }]}>{detail ? "Same transcript" : "One shared transcript"}</span>
+        <p>{detail ? "~446 words" : "The same conversation in every condition"}</p>
+      </div>
+      <ol role="list" class="research-conditions" aria-label="Three label conditions">
+        {conditions.map(condition => (
+          <li class="research-condition">
+            <strong>{condition.label}</strong>
+            <span>{condition.name}</span>
+            {!detail && <small>{condition.description}</small>}
+          </li>
+        ))}
+      </ol>
+    </div>
+    {!detail && <figcaption class="research-diagram-caption" id="study-diagram-caption">Study structure: the transcript stayed the same while the speaker labels changed. This diagram shows the conditions, not numerical results.</figcaption>}
+  </figure>

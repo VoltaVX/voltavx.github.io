@@ -1,0 +1,140 @@
+---
+import { withBase } from '../lib/links';
+// C-0004: locked copy and element anatomy are defined in docs/ui/components/pathway.md.
+// Example controls are illustrations, not interactive controls or measured results.
+const stages = [
+  {
+    number: '01',
+    eyebrow: 'STIMULUS SALIENCE AND ATTENDING',
+    title: 'Make What Matters Easy to Notice',
+    body: 'Visual hierarchy, contrast, and placement make task-relevant information easier to distinguish from supporting detail. The most useful next action should stand out without competing unnecessarily for attention.',
+    implication: 'prioritize the next useful action, then layer in supporting detail.',
+    icon: 'eye',
+    annotation: 'One clear next action',
+    state: '',
+  },
+  {
+    number: '02',
+    eyebrow: 'DISCRIMINATIVE STIMULI',
+    title: 'Use Clear Cues for Action',
+    body: 'Labels, controls, and interface states should signal which actions are available and which are likely to work. Consistent cues reduce guesswork and help people move through a system with greater confidence.',
+    implication: 'use stable labels, recognizable controls, and predictable states.',
+    icon: 'signpost',
+    annotation: 'A recognizable selected state',
+    state: '',
+  },
+  {
+    number: '03',
+    eyebrow: 'TASK ANALYSIS, PROMPTING, AND FADING',
+    title: 'Support Progress in Manageable Steps',
+    body: 'Complex tasks become more approachable when they are divided into meaningful steps and supported at the moment help is needed. That assistance should gradually recede as the person becomes more capable of completing the task independently.',
+    implication: 'sequence difficult tasks, provide timely guidance, and fade support when it is no longer needed.',
+    icon: 'steps',
+    annotation: 'Help at the relevant step',
+    state: 'Interaction study',
+  },
+  {
+    number: '04',
+    eyebrow: 'CONSEQUENCES AND REINFORCEMENT',
+    title: 'Make Outcomes Clear and Consistent',
+    body: 'Immediate, accurate feedback helps people determine whether an action worked. A consequence functions as reinforcement only when it makes the behavior it follows more likely to occur again.',
+    implication: 'confirm outcomes, preserve progress, and make effective actions easy to repeat.',
+    icon: 'shield',
+    annotation: 'A clear completion state',
+    state: 'Interaction study',
+  },
+  {
+    number: '05',
+    eyebrow: 'SOCIAL VALIDITY AND DATA-BASED DECISIONS',
+    title: 'Measure Meaningful Outcomes',
+    body: 'A useful system should be evaluated by outcomes that matter to the people using it. Measure whether important tasks become more successful, efficient, or independent, identify barriers, and revise the environment when results fall short.',
+    implication: 'define observable success with users and let the results guide refinement.',
+    icon: 'chart',
+    annotation: 'Success defined with users',
+    state: 'Evaluation plan',
+  },
+];
+---
+
+<section class="container section pathway-section" id="pathway" aria-labelledby="pathway-title">
+  <header class="pathway-intro">
+    <p class="eyebrow">ABA-INFORMED DESIGN PATHWAY</p>
+    <h2 id="pathway-title">From observation to useful change.</h2>
+    <p class="muted">Behavioral ideas are translated into everyday design decisions. Technical terms appear only where they add precision.</p>
+  </header>
+
+  <ol class="pathway-list" role="list">
+    {stages.map((stage) => (
+      <li class:list={['pathway-stage', { 'pathway-stage--compact': stage.number === '02' }]}>
+        <article class="pathway-card" aria-labelledby={`pathway-${stage.number}-title`}>
+          <span class="pathway-badge" aria-hidden="true">{stage.number}</span>
+          <span class="pathway-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+              {stage.icon === 'eye' && <><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" /><circle cx="12" cy="12" r="3" /></>}
+              {stage.icon === 'signpost' && <><path d="M12 3v18M5 6h12l4 4-4 4H5V6Z" /><path d="M8 21h8" /></>}
+              {stage.icon === 'steps' && <path d="M3 20h6v-6h6V8h6M3 4h5M3 8h2" />}
+              {stage.icon === 'shield' && <><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z" /><path d="m8 12 3 3 5-6" /></>}
+              {stage.icon === 'chart' && <><path d="M4 3v17h17M8 16v-4M13 16V8M18 16V5" /></>}
+            </svg>
+          </span>
+          <div class="pathway-copy">
+            <p class="eyebrow">{stage.eyebrow}</p>
+            <h3 id={`pathway-${stage.number}-title`}>{stage.title}</h3>
+            <p>{stage.body}</p>
+            <p class="pathway-implication">Design implication: {stage.implication}</p>
+          </div>
+        </article>
+
+        <figure class="pathway-evidence" aria-label={`Interface illustration for stage ${stage.number}`}>
+          {stage.number === '01' && (
+            <div class="example-plane pathway-example-hero">
+              <p class="example-kicker">BEHAVIOR · RESEARCH · DESIGN</p>
+              <p class="example-heading">Data reveals patterns.<br />Care gives them purpose.</p>
+              <span class="example-action">Explore my work <span aria-hidden="true">↗</span></span>
+            </div>
+          )}
+          {stage.number === '02' && (
+            <div class="example-plane filter-example" role="group" aria-label="Illustrated filters; All work is selected">
+              <span class="is-selected">All work<span class="visually-hidden"> (selected)</span></span>
+              <span>Commerce</span>
+              <span>Research</span>
+            </div>
+          )}
+          {stage.number === '03' && (
+            <div class="example-plane pathway-example-steps">
+              <ol class="example-stepper" role="list" aria-label="Proposed task steps">
+                <li class="example-step">Project</li>
+                <li class="example-step is-current">Details<span class="visually-hidden"> (current step)</span></li>
+                <li class="example-step">Review</li>
+              </ol>
+              <p class="example-help"><strong>Optional help</strong><br />Add the context that matters to your project.</p>
+            </div>
+          )}
+          {stage.number === '04' && (
+            <div class="example-plane confirmation-example">
+              <span class="example-check" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9" /><path d="m8 12 3 3 5-6" /></svg></span>
+              <p class="example-heading">Message sent</p>
+              <span class="example-return">Return to portfolio <span aria-hidden="true">↗</span></span>
+            </div>
+          )}
+          {stage.number === '05' && (
+            <div class="example-plane evaluation-example">
+              <dl>
+                <div class="evaluation-row"><dt>Goal</dt><dd>Find a relevant project.</dd></div>
+                <div class="evaluation-row"><dt>Observe</dt><dd>Task completion and barriers.</dd></div>
+                <div class="evaluation-row"><dt>Ask</dt><dd>Was the process useful?</dd></div>
+              </dl>
+            </div>
+          )}
+          <figcaption class="pathway-caption" id={`pathway-${stage.number}-caption`}>
+            <span class="pathway-caption-label">Example {stage.number}</span>
+            {stage.state && <span class="pathway-caption-state">{stage.state}</span>}
+            <span>{stage.annotation}</span>
+          </figcaption>
+        </figure>
+      </li>
+    ))}
+  </ol>
+
+  <p class="pathway-sources"><a class="text-link" href={withBase("/approach/")}>Read the approach and research notes <span aria-hidden="true">↗</span></a></p>
+</section>

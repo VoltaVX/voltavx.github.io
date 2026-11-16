@@ -1,0 +1,110 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import type { WorkCategory } from '../lib/work-filter';
+
+const projects: {
+  title: string; slug: string; category: WorkCategory; categoryLabel: string;
+  status: string; description: string; imageAlt: string; concept?: boolean;
+}[] = [
+  {
+    imageAlt: 'SIS Asphalt homepage with a newly paved roadway and service navigation',
+    title: 'SIS Asphalt', slug: 'sis-asphalt', category: 'client', categoryLabel: 'Client systems', status: 'Live client project',
+    description: 'A multi-page service website for Florida asphalt education, trust, and quote requests.',
+  },
+  {
+    imageAlt: 'VX Nexus editorial commerce homepage in black and warm white with a green accent',
+    title: 'VX Nexus', slug: 'vx-nexus', category: 'commerce', categoryLabel: 'Commerce', status: 'Independent commerce project',
+    description: 'An art-directed Shopify system connecting training, recovery, cooling, and everyday products.',
+  },
+  {
+    imageAlt: 'World Cup Items storefront with international fan merchandise and country-based shopping',
+    title: 'World Cup Items', slug: 'world-cup-items', category: 'commerce', categoryLabel: 'Commerce', status: 'Independent commerce project',
+    description: 'A seasonal international storefront organized around country pride and match-day rituals.',
+  },
+  {
+    imageAlt: 'Diagram of one transcript evaluated under three different origin labels',
+    title: 'AI Misattribution', slug: 'ai-misattribution', category: 'research', categoryLabel: 'Research', status: 'Academic research',
+    description: 'An online experiment testing whether labels about AI involvement change judgments of the same interaction.',
+  },
+  {
+    imageAlt: 'Sharper Image Services homepage with landscaping service imagery and navigation',
+    title: 'Sharper Image Services', slug: 'sharper-image-services', category: 'client', categoryLabel: 'Client systems', status: 'Live client project',
+    description: 'A centralized service and payment website for a South Florida landscaping company.',
+  },
+  {
+    imageAlt: 'SIS Florida homepage showing installed green turf and sod service information',
+    title: 'SIS Florida', slug: 'sis-florida', category: 'client', categoryLabel: 'Client systems', status: 'Live client project',
+    description: 'A product-education and inquiry website for residential and commercial sod customers.',
+  },
+  {
+    imageAlt: 'Abstract operations dashboard with organized content panels',
+    title: 'PantherNOW Operations', slug: 'panthernow-operations', category: 'research', categoryLabel: 'Research', status: 'Internal tool',
+    description: 'A 2025 operations-site iteration organized around clearer access to internal information.',
+  },
+  {
+    imageAlt: 'Blueprint-style behavioral data visualization concept',
+    title: 'ABA Data Visualization System', slug: 'aba-data-visualization', category: 'research', categoryLabel: 'Research', status: 'In development', concept: true,
+    description: 'A developing model for making behavioral data easier to inspect and discuss.',
+  },
+];
+const filters = [
+  { value: 'all', label: 'All work' },
+  { value: 'client', label: 'Client systems' },
+  { value: 'commerce', label: 'Commerce' },
+  { value: 'research', label: 'Research' },
+];
+---
+<section id="work" class="container section work-section" aria-labelledby="work-title">
+  <div class="section-heading">
+    <p class="eyebrow">Selected work</p>
+    <h2 id="work-title">Different systems. One careful foundation.</h2>
+    <p class="lead">Research, client services, commerce, and data work shaped around the real decisions people need to make.</p>
+  </div>
+  <div class="work-filters glass" role="group" aria-label="Filter selected work" data-work-filters hidden>
+    {filters.map(({ value, label }) => (
+      <button type="button" data-filter={value} aria-pressed={value === 'all' ? 'true' : 'false'} aria-controls="work-projects">{label}</button>
+    ))}
+  </div>
+  <div class="work-filter-status cluster" data-work-status hidden>
+    <p class="help-text" role="status" aria-live="polite" aria-atomic="true" data-work-count></p>
+    <button class="text-link work-reset" type="button" data-work-reset hidden>Show all work</button>
+  </div>
+  <div id="work-projects" class="work-grid">
+    {projects.map((project, index) => <ProjectCard {...project} featured={index < 2} />)}
+  </div>
+</section>
+
+<script>
+  import { selectWorkItems, type WorkCategory } from '../lib/work-filter';
+
+  const section = document.querySelector<HTMLElement>('#work');
+  if (section) {
+    const controls = section.querySelector<HTMLElement>('[data-work-filters]');
+    const status = section.querySelector<HTMLElement>('[data-work-status]');
+    const count = section.querySelector<HTMLElement>('[data-work-count]');
+    const reset = section.querySelector<HTMLButtonElement>('[data-work-reset]');
+    const buttons = [...section.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    const cards = [...section.querySelectorAll<HTMLElement>('[data-work-card]')].map((element) => ({
+      element, category: element.dataset.category as WorkCategory,
+    }));
+
+    if (controls && status && count && reset && cards.length) {
+      const applyFilter = (filter: string) => {
+        const visible = new Set(selectWorkItems(cards, filter));
+        for (const card of cards) card.element.hidden = !visible.has(card);
+        for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.filter === filter));
+        const label = buttons.find((button) => button.dataset.filter === filter)?.textContent?.trim() ?? 'All work';
+        count.textContent = `${visible.size} of ${cards.length} projects shown · ${label}`;
+        reset.hidden = filter === 'all';
+      };
+      for (const button of buttons) button.addEventListener('click', () => applyFilter(button.dataset.filter ?? 'all'));
+      reset.addEventListener('click', () => {
+        applyFilter('all');
+        buttons[0]?.focus();
+      });
+      applyFilter('all');
+      controls.hidden = false;
+      status.hidden = false;
+    }
+  }
+</script>

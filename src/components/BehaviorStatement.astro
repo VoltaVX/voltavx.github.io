@@ -1,0 +1,24 @@
+---
+const stages = ['Observe', 'Define', 'Measure', 'Analyze', 'Test', 'Refine'];
+---
+<section class="section behavior-feature" id="approach" aria-labelledby="behavior-title">
+  <div class="container behavior-statement">
+    <div class="intro-copy behavior-editorial">
+      <p class="eyebrow">Behavior analysis</p>
+      <h2 class="behavior-heading" id="behavior-title">
+        <span class="behavior-heading-sans">Data reveals</span>
+        <em><span>patterns.</span> <span>Care gives them purpose.</span></em>
+      </h2>
+      <div class="behavior-copy">
+        <p>Data helps me understand behavior. Care helps me decide what to build.</p>
+        <p>Observe carefully. Define clearly. Respect the person behind every decision.</p>
+      </div>
+    </div>
+    <div class="behavior-process card">
+      <ol class="research-stages" aria-label="Research process">
+        {stages.map(stage => <li><span class="research-stage-label">{stage}</span></li>)}
+      </ol>
+      <p class="behavior-process-note"><em>Patterns</em> become useful when they lead to thoughtful action.</p>
+    </div>
+  </div>
+</section>

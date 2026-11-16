@@ -1,0 +1,41 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+const projects = [
+  {
+    title: 'Sharper Image Services',
+    description: 'Centralizing a broad landscaping and land-service offering, including inquiry and payment tasks.',
+    icon: 'M4 18h16M6 18V8l6-4 6 4v10M10 18v-6h4v6',
+  },
+  {
+    title: 'SIS Florida',
+    description: 'Explaining sod varieties and installation for residential and commercial audiences.',
+    icon: 'M12 20v-8M12 15C5 15 4 10 4 5c5 0 8 2 8 7M12 12c0-5 3-7 8-7 0 5-1 10-8 10',
+  },
+  {
+    title: 'SIS Asphalt',
+    description: 'Creating a deeper service, trust, education, and quote-request architecture.',
+    icon: 'M5 21 9 3h6l4 18M12 5v3m0 4v3m0 4v2',
+  },
+];
+---
+
+<section id="ecosystem" class="section container ecosystem-grid" aria-label="Project ecosystem">
+  <SectionHeading
+    eyebrow="Project ecosystem"
+    title="One industry ecosystem. Three different digital problems."
+  />
+  <ul role="list" class="ecosystem-panel">
+    {projects.map((project) => (
+      <li class="ecosystem-row">
+        <svg class="ecosystem-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d={project.icon} />
+        </svg>
+        <div>
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>

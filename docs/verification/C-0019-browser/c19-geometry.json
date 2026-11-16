@@ -1,0 +1,618 @@
+{
+  "normal": [
+    {
+      "route": "/work/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/research/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/approach/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/services/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/about/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/contact/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/research/ai-misattribution/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/resume/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/privacy/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/work/sis-asphalt/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/work/vx-nexus/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/work/world-cup-items/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/work/ai-misattribution/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/work/sharper-image-services/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/work/sis-florida/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/work/panthernow-operations/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/work/aba-data-visualization/",
+      "width": 305,
+      "h1": 1,
+      "scroll": 305
+    },
+    {
+      "route": "/work/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/research/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/approach/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/services/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/about/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/contact/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/research/ai-misattribution/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/resume/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/privacy/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/work/sis-asphalt/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/work/vx-nexus/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/work/world-cup-items/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/work/ai-misattribution/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/work/sharper-image-services/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/work/sis-florida/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/work/panthernow-operations/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/work/aba-data-visualization/",
+      "width": 375,
+      "h1": 1,
+      "scroll": 375
+    },
+    {
+      "route": "/work/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/research/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/approach/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/services/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/about/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/contact/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/research/ai-misattribution/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/resume/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/privacy/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/work/sis-asphalt/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/work/vx-nexus/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/work/world-cup-items/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/work/ai-misattribution/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/work/sharper-image-services/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/work/sis-florida/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/work/panthernow-operations/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/work/aba-data-visualization/",
+      "width": 753,
+      "h1": 1,
+      "scroll": 753
+    },
+    {
+      "route": "/work/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/research/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/approach/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/services/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/about/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/contact/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/research/ai-misattribution/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/resume/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/privacy/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/work/sis-asphalt/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/work/vx-nexus/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/work/world-cup-items/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/work/ai-misattribution/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/work/sharper-image-services/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/work/sis-florida/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/work/panthernow-operations/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/work/aba-data-visualization/",
+      "width": 1009,
+      "h1": 1,
+      "scroll": 1009
+    },
+    {
+      "route": "/work/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/research/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/approach/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/services/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/about/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/contact/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/research/ai-misattribution/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/resume/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/privacy/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/work/sis-asphalt/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/work/vx-nexus/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/work/world-cup-items/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/work/ai-misattribution/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/work/sharper-image-services/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/work/sis-florida/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/work/panthernow-operations/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    },
+    {
+      "route": "/work/aba-data-visualization/",
+      "width": 1425,
+      "h1": 1,
+      "scroll": 1425
+    }
+  ],
+  "enlarged": [
+    {
+      "route": "/work/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/research/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/approach/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/services/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/about/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/contact/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/research/ai-misattribution/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/resume/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/privacy/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/work/sis-asphalt/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/work/vx-nexus/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/work/world-cup-items/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/work/ai-misattribution/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/work/sharper-image-services/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/work/sis-florida/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/work/panthernow-operations/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    },
+    {
+      "route": "/work/aba-data-visualization/",
+      "root": "32px",
+      "scroll": 305,
+      "width": 305
+    }
+  ]
+}

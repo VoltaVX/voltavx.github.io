@@ -1,0 +1,24 @@
+---
+import { site } from '../config/site';
+import { withBase } from '../lib/links';
+const links = [
+  { id: 'work', label: 'Work' },
+  { id: 'research', label: 'Research' },
+  { id: 'approach', label: 'Approach' },
+  { id: 'services', label: 'Services' },
+  { id: 'about', label: 'About' },
+];
+---
+<header class="site-header container">
+  <a class="brand" href={withBase('/')} aria-label={`${site.name} home`}>JL<span class="brand-dot" aria-hidden="true">.</span></a>
+  <nav aria-label="Primary">
+    <ul class="desktop-navigation">
+      {links.map(link => <li><a href={withBase(`/${link.id}/`)} aria-current={Astro.url.pathname.replace(import.meta.env.BASE_URL, '/').startsWith(`/${link.id}/`) ? 'page' : undefined}>{link.label}</a></li>)}
+    </ul>
+    <details class="mobile-menu">
+      <summary><span class="visually-hidden">Menu</span><svg class="menu-glyph" width="32" height="24" viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M2 7h28M2 17h28" /></svg></summary>
+      <ul>{links.map(link => <li><a href={withBase(`/${link.id}/`)} aria-current={Astro.url.pathname.replace(import.meta.env.BASE_URL, '/').startsWith(`/${link.id}/`) ? 'page' : undefined}>{link.label}</a></li>)}<li><a href={withBase('/contact/')} aria-current={Astro.url.pathname.endsWith('/contact/') ? 'page' : undefined}>Contact</a></li></ul>
+    </details>
+  </nav>
+  <a class="header-contact" href={withBase('/contact/')} aria-current={Astro.url.pathname.endsWith('/contact/') ? 'page' : undefined}>Contact</a>
+</header>

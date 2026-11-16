@@ -1,0 +1,111 @@
+/* Compatibility adapter for the supplied scaffold's Astro-scoped selectors.
+   Keep this specificity here. New portfolio composition lives in portfolio.css. */
+@layer components {
+  :root body .site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-1) var(--space-3); min-block-size: 3rem; margin-block-start: var(--space-3); padding: var(--space-1) var(--space-3); background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius-pill); box-shadow: var(--glass-shadow); -webkit-backdrop-filter: var(--glass-filter); backdrop-filter: var(--glass-filter); }
+  :root body .brand { display: inline-flex; align-items: center; gap: 0; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.035em; min-inline-size: var(--target-min); min-block-size: var(--target-min); text-decoration: none; }
+  .brand-dot { color: var(--color-accent); }
+  :root body .site-header nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2-5); padding: 0; list-style: none; }
+  :root body .site-header nav a { display: inline-flex; align-items: center; justify-content: center; padding: var(--space-1) var(--space-1-5); min-inline-size: var(--target-min); min-block-size: var(--target-min); font-size: var(--text-caption); line-height: 1.428572; border-radius: var(--radius-pill); text-decoration: none; }
+  :root body .site-header nav a[aria-current='page'] { background: var(--color-sage); text-decoration: underline; text-decoration-thickness: 2px; }
+  :root body .header-contact { display: inline-flex; align-items: center; justify-content: center; justify-self: end; gap: var(--space-1); padding: var(--space-1-5) var(--space-3); min-block-size: var(--target-primary); border: 1px solid var(--color-control-line); border-radius: var(--radius-pill); background: var(--color-sage); font-size: var(--text-button); line-height: 1.333334; text-decoration: none; }
+  .mobile-menu { display: none; }
+  .mobile-menu summary { padding: var(--space-1-5); font-size: var(--text-caption); line-height: 1.428572; border-radius: var(--radius-md); }
+  .mobile-menu[open] summary { background: var(--color-sage); }
+  :root body .action-link { gap: var(--space-1); min-inline-size: var(--target-min); min-block-size: var(--target-primary); padding: var(--control-padding-block) var(--control-padding-inline); border-color: var(--color-control-line); font-size: var(--text-button); line-height: 1.333334; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; transition: background-color var(--duration-fast) var(--ease-standard); }
+  :root body .action-link.primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-white); }
+  :root body .action-link.secondary { background: var(--color-surface); color: var(--color-ink); }
+  :root body .section-heading { margin-block-end: var(--heading-gap); max-inline-size: 50rem; }
+  :root body .section-heading > * + * { margin-block-start: var(--space-1-5); }
+  :root body .section-heading h2 + * { margin-block-start: var(--space-2); }
+  :root body .section-heading h2 { font-size: var(--text-h2); font-weight: var(--weight-heading); line-height: var(--leading-heading); }
+  :root body .hero { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); padding-block: var(--space-6) 0; }
+  :root body .hero-copy { padding-block: 0; }
+  :root body .hero-copy.hero-copy.hero-copy > * + * { margin-block-start: var(--space-1-5); }
+  :root body .hero-copy.hero-copy.hero-copy > .lead { margin-block-start: var(--space-2); }
+  :root body .hero-copy.hero-copy.hero-copy > .actions { margin-block-start: var(--space-3); }
+  :root body .hero-copy h1 { max-inline-size: 40rem; }
+  :root body .hero-copy.hero-copy em { font-weight: inherit; }
+  :root body .composition { padding: var(--card-padding); color: var(--color-ink); background: var(--color-surface); border: 1px solid var(--color-line); box-shadow: none; }
+  :root body .composition-top { font-size: var(--text-caption); border-color: var(--color-line); }
+  :root body .note-strip { margin-block-start: var(--space-5); padding-block: var(--space-3); }
+  :root body .number { font-size: 1.5rem; font-weight: 650; margin-block-end: var(--space-3); color: var(--color-accent); }
+  :root body .contact-section { margin-block-start: var(--section-space); }
+  :root body .contact-panel { padding: var(--space-6) 0; background: transparent; border: 0; border-radius: 0; box-shadow: none; gap: var(--space-4); align-items: center; }
+  :root body .contact-panel.contact-panel h2 { font-size: var(--text-h2); font-weight: var(--weight-heading); }
+  :root body .contact-panel em { font-family: var(--font-accent); font-style: italic; color: var(--color-accent); }
+  :root body .swatch { padding: var(--card-padding); }
+  :root body .swatch.swatch code { font-size: var(--text-caption); }
+  :root body .type-grid { gap: var(--grid-gap); }
+  :root body .type-sample { font-size: var(--text-h2); font-weight: 600; }
+  :root body .type-sample em { font-family: var(--font-accent); font-style: italic; color: var(--color-accent); }
+  :root body .disclosures.disclosures h3 { font-size: var(--text-h3); }
+  :root body .disclosures details { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-sm); padding-inline: var(--space-2); }
+  :root body .disclosures details + details { margin-block-start: var(--space-1); }
+  :root body .disclosures summary { min-block-size: var(--target-min); }
+  :root body .site-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding-block: var(--space-4); gap: var(--space-3); border-block-start: 1px solid var(--color-line); font-size: var(--text-caption); line-height: 1.428572; }
+  .footer-identity { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-3); }
+  .site-footer nav { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  @media (min-width: 80rem) {
+    :root body .site-header { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  }
+  @media (max-width: 79.999rem) {
+    :root body .hero { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
+    :root body .composition { max-inline-size: 36rem; }
+  }
+  @media (max-width: 47.999rem) {
+    :root body .site-header { border-radius: var(--radius-lg); padding-inline: var(--space-2); }
+    :root body .site-header nav ul { justify-content: flex-start; gap: var(--space-half); }
+    :root body .contact-panel { padding-block: var(--space-4); }
+  }
+  @media (hover: hover) {
+    :root body .action-link.primary:hover { background: var(--color-hover); }
+    :root body .action-link.secondary:hover, :root body .site-header nav a:hover { background: var(--color-sage); }
+  }
+  @media (forced-colors: active) {
+    :root body .action-link.primary { color: HighlightText; border-color: ButtonText; }
+    :root body .composition { background: Canvas; color: CanvasText; }
+  }
+}
+@layer utilities {
+  @media (max-width: 79.999rem) {
+    :root body .site-header .desktop-navigation { display: none; }
+    .mobile-menu { display: block; }
+    :root body .site-header .mobile-menu ul { flex-direction: column; align-items: stretch; gap: var(--space-2-5); }
+    :root body .site-header .mobile-menu a { justify-content: flex-start; }
+  }
+}
+
+/* C-0011: native icon disclosure with logo and toggle on the first line. */
+@layer utilities {
+  @media (max-width: 79.999rem) {
+    .site-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      min-block-size: var(--mobile-header-height);
+      padding-block: var(--space-1);
+      padding-inline: var(--space-2);
+      border-radius: var(--feature-radius);
+    }
+    .site-header > .brand { grid-column: 1; grid-row: 1; align-self: center; min-block-size: var(--target-primary); font-size: var(--mobile-brand-size); z-index: 1; justify-self: start; }
+    .site-header > nav { grid-column: 1 / -1; grid-row: 1; min-inline-size: 0; }
+    .site-header > .header-contact { display: none; }
+    .site-header:has(.mobile-menu[open]) > .brand { visibility: hidden; }
+    .mobile-menu summary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: var(--target-primary);
+      min-block-size: var(--target-primary);
+      margin-inline-start: auto;
+      padding: 0;
+      list-style: none;
+      cursor: pointer;
+    }
+    .mobile-menu summary::-webkit-details-marker { display: none; }
+    .mobile-menu summary::marker { content: ''; }
+    .mobile-menu[open] summary { background: transparent; }
+    .site-header .mobile-menu ul { margin-block-start: var(--space-2); }
+    .menu-glyph { inline-size: var(--space-4); block-size: var(--space-3); }
+  }
+}

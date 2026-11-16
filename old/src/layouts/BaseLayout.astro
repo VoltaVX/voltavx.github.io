@@ -1,0 +1,163 @@
+---
+import Header from '@/components/global/Header.astro';
+import Footer from '@/components/global/Footer.astro';
+import { getSeoPageRecord } from '@/config/seo';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+  type?: 'website' | 'article';
+  dateModified?: string;
+  breadcrumbs?: Array<{ name: string; item: string }>;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title = 'Juan Lopez — Behavior Analyst and Digital Systems Designer',
+  description = 'Juan Lopez studies behavior and builds research, care, and digital systems around clarity, evidence, autonomy, and human dignity.',
+  image = '/og-default.svg',
+  imageAlt = 'Juan Lopez — behavior analyst, researcher, and digital systems designer',
+  noindex = false,
+  type = 'website',
+  dateModified,
+  breadcrumbs = [],
+  structuredData,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const seoRecord = getSeoPageRecord(Astro.url.pathname);
+const effectiveDateModified = [dateModified, seoRecord?.reviewedAt]
+  .filter(Boolean)
+  .sort()
+  .at(-1);
+const siteUrl = new URL('/', Astro.site).href;
+const personId = new URL('/#juan-lopez', Astro.site).href;
+const websiteId = new URL('/#website', Astro.site).href;
+const robots = noindex
+  ? 'noindex,follow'
+  : 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1';
+const socialImage = new URL(image, Astro.site);
+const imageMetadata = image.includes('/images/projects/')
+  ? { width: 1600, height: 960, type: 'image/webp' }
+  : image.includes('/images/hero/')
+    ? { width: 1586, height: 992, type: 'image/webp' }
+    : image.includes('/images/portraits/')
+      ? { width: 1122, height: 1402, type: 'image/webp' }
+      : { width: 1200, height: 630, type: 'image/svg+xml' };
+const pageStructuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: 'Juan Lopez',
+      url: siteUrl,
+      jobTitle: 'Behavior Analyst',
+      description: 'Behavior analyst, researcher, and digital systems designer focused on clarity, evidence, autonomy, and human dignity.',
+      sameAs: ['https://www.linkedin.com/in/juan-lopez04'],
+      knowsAbout: [
+        'Behavior analysis',
+        'Behavioral research',
+        'Web design and development',
+        'Shopify theme development',
+        'Digital systems design',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: siteUrl,
+      name: 'Juan Lopez',
+      description: 'Behavior analysis, research, and digital systems portfolio for Juan Lopez.',
+      inLanguage: 'en-US',
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': seoRecord?.schemaType ?? 'WebPage',
+      '@id': canonical.href,
+      url: canonical.href,
+      name: title,
+      description,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': personId },
+      author: { '@id': personId },
+      inLanguage: 'en-US',
+      isAccessibleForFree: true,
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        contentUrl: socialImage.href,
+        caption: imageAlt,
+        width: imageMetadata.width,
+        height: imageMetadata.height,
+      },
+      ...(effectiveDateModified ? { dateModified: effectiveDateModified } : {}),
+      ...((seoRecord?.schemaType === 'ProfilePage') ? { mainEntity: { '@id': personId } } : {}),
+    },
+    ...(breadcrumbs.length
+      ? [{
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+            ...breadcrumbs.map((breadcrumb, index) => ({
+              '@type': 'ListItem',
+              position: index + 2,
+              name: breadcrumb.name,
+              item: new URL(breadcrumb.item, Astro.site).href,
+            })),
+          ],
+        }]
+      : []),
+    ...(structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : []),
+  ],
+};
+const jsonLd = JSON.stringify(pageStructuredData).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="referrer" content="same-origin" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#f6f5f1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="author" content="Juan Lopez" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content={type} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Juan Lopez" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content={imageMetadata.type} />
+    <meta property="og:image:width" content={String(imageMetadata.width)} />
+    <meta property="og:image:height" content={String(imageMetadata.height)} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    {type === 'article' && <meta property="article:author" content="Juan Lopez" />}
+    {type === 'article' && effectiveDateModified && <meta property="article:modified_time" content={effectiveDateModified} />}
+    <script is:inline type="application/ld+json" set:html={jsonLd} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

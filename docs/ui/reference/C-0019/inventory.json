@@ -1,0 +1,121 @@
+[
+  {
+    "route": "/work/",
+    "url": "https://voltavx.com/work/",
+    "screenshot": "screenshots/voltavx-work.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/research/",
+    "url": "https://voltavx.com/research/",
+    "screenshot": "screenshots/voltavx-research.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/approach/",
+    "url": "https://voltavx.com/approach/",
+    "screenshot": "screenshots/voltavx-approach.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/services/",
+    "url": "https://voltavx.com/services/",
+    "screenshot": "screenshots/voltavx-services.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/about/",
+    "url": "https://voltavx.com/about/",
+    "screenshot": "screenshots/voltavx-about.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/contact/",
+    "url": "https://voltavx.com/contact/",
+    "screenshot": "screenshots/voltavx-contact.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/research/ai-misattribution/",
+    "url": "https://voltavx.com/research/ai-misattribution/",
+    "screenshot": "screenshots/voltavx-research-ai-misattribution.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/resume/",
+    "url": "https://voltavx.com/resume/",
+    "screenshot": "screenshots/voltavx-resume.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/privacy/",
+    "url": "https://voltavx.com/privacy/",
+    "screenshot": "screenshots/voltavx-privacy.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/work/sis-asphalt/",
+    "url": "https://voltavx.com/work/sis-asphalt/",
+    "screenshot": "screenshots/voltavx-work-sis-asphalt.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/work/vx-nexus/",
+    "url": "https://voltavx.com/work/vx-nexus/",
+    "screenshot": "screenshots/voltavx-work-vx-nexus.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/work/world-cup-items/",
+    "url": "https://voltavx.com/work/world-cup-items/",
+    "screenshot": "screenshots/voltavx-work-world-cup-items.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/work/ai-misattribution/",
+    "url": "https://voltavx.com/work/ai-misattribution/",
+    "screenshot": "screenshots/voltavx-work-ai-misattribution.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/work/sharper-image-services/",
+    "url": "https://voltavx.com/work/sharper-image-services/",
+    "screenshot": "screenshots/voltavx-work-sharper-image-services.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/work/sis-florida/",
+    "url": "https://voltavx.com/work/sis-florida/",
+    "screenshot": "screenshots/voltavx-work-sis-florida.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/work/panthernow-operations/",
+    "url": "https://voltavx.com/work/panthernow-operations/",
+    "screenshot": "screenshots/voltavx-work-panthernow-operations.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  },
+  {
+    "route": "/work/aba-data-visualization/",
+    "url": "https://voltavx.com/work/aba-data-visualization/",
+    "screenshot": "screenshots/voltavx-work-aba-data-visualization.jpg",
+    "captured": true,
+    "coverage": "desktop opening viewport; not full page"
+  }
+]

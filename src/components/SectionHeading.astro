@@ -1,0 +1,15 @@
+---
+interface Props { eyebrow: string; title: string; description?: string; }
+const { eyebrow, title, description } = Astro.props;
+---
+<div class="section-heading stack">
+  <p class="eyebrow">{eyebrow}</p>
+  <h2>{title}</h2>
+  {description && <p class="lead">{description}</p>}
+</div>
+<style>
+  @layer components {
+    .section-heading { margin-block-end: var(--space-6); max-inline-size: 52rem; }
+    h2 { font-family: var(--font-display); font-size: clamp(2.25rem, 1rem + 3vw, 3.5rem); letter-spacing: -0.035em; text-wrap: balance; }
+  }
+</style>

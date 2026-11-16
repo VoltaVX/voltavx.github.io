@@ -1,0 +1,67 @@
+[
+  {
+    "n": "01",
+    "term": "STIMULUS SALIENCE AND ATTENDING",
+    "title": "Make What Matters Easy to Notice",
+    "body": "Visual hierarchy, contrast, and placement make task-relevant information easier to distinguish from supporting detail. The most useful next action should stand out without competing unnecessarily for attention.",
+    "implication": "Design implication: prioritize the next useful action, then layer in supporting detail.",
+    "target": "Hero headline and Explore my work button",
+    "notes": [
+      "Clear purpose",
+      "One primary action",
+      "Quiet supporting detail"
+    ]
+  },
+  {
+    "n": "02",
+    "term": "DISCRIMINATIVE STIMULI",
+    "title": "Use Clear Cues for Action",
+    "body": "Labels, controls, and interface states should signal which actions are available and which are likely to work. Consistent cues reduce guesswork and help people move through a system with greater confidence.",
+    "implication": "Design implication: use stable labels, recognizable controls, and predictable states.",
+    "target": "Selected work filter labels and selected tab",
+    "notes": [
+      "Stable labels",
+      "Visible state",
+      "Action-to-result link"
+    ]
+  },
+  {
+    "n": "03",
+    "term": "TASK ANALYSIS, PROMPTING, AND FADING",
+    "title": "Support Progress in Manageable Steps",
+    "body": "Complex tasks become more approachable when they are divided into meaningful steps and supported at the moment help is needed. That assistance should gradually recede as the person becomes more capable of completing the task independently.",
+    "implication": "Design implication: sequence difficult tasks, provide timely guidance, and fade support when it is no longer needed.",
+    "target": "Proposed contact flow progress indicator and optional help",
+    "notes": [
+      "Logical steps",
+      "Optional help",
+      "Preserved progress"
+    ]
+  },
+  {
+    "n": "04",
+    "term": "CONSEQUENCES AND REINFORCEMENT",
+    "title": "Make Outcomes Clear and Consistent",
+    "body": "Immediate, accurate feedback helps people determine whether an action worked. A consequence functions as reinforcement only when it makes the behavior it follows more likely to occur again.",
+    "implication": "Design implication: confirm outcomes, preserve progress, and make effective actions easy to repeat.",
+    "target": "Proposed contact confirmation and error recovery",
+    "notes": [
+      "Confirm completion",
+      "Recover errors",
+      "Verify effects"
+    ]
+  },
+  {
+    "n": "05",
+    "term": "SOCIAL VALIDITY AND DATA-BASED DECISIONS",
+    "title": "Measure Meaningful Outcomes",
+    "body": "A useful system should be evaluated by outcomes that matter to the people using it. Measure whether important tasks become more successful, efficient, or independent, identify barriers, and revise the environment when results fall short.",
+    "implication": "Design implication: define observable success with users and let the results guide refinement.",
+    "target": "Portfolio evaluation plan and user-defined task outcomes",
+    "notes": [
+      "User-defined goals",
+      "Task success",
+      "Acceptability"
+    ]
+  }
+]

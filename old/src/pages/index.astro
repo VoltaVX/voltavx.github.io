@@ -1,0 +1,228 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+import StudyDiagram from '@/components/home/StudyDiagram.astro';
+import Pathway from '@/components/home/Pathway.astro';
+import ProjectCard from '@/components/work/ProjectCard.astro';
+
+const projects = (await getCollection('projects'))
+  .filter((project) => project.data.featured)
+  .sort((a, b) => a.data.featuredOrder - b.data.featuredOrder);
+
+const services = [
+  {
+    number: '01',
+    title: 'Behavioral Research & Strategy',
+    copy: 'Research that identifies patterns, barriers, needs, and opportunities before design begins.',
+  },
+  {
+    number: '02',
+    title: 'Web Design & Development',
+    copy: 'Responsive websites built around clarity, accessibility, performance, and purposeful structure.',
+  },
+  {
+    number: '03',
+    title: 'Commerce & Digital Systems',
+    copy: 'Shopify theme development and operational systems that make products, services, and decisions easier to understand.',
+  },
+  {
+    number: '04',
+    title: 'Data & Content Systems',
+    copy: 'Tools that organize information, reveal patterns, and support more informed decisions.',
+  },
+];
+---
+
+<BaseLayout
+  image="/images/hero/juan-hero-v2.webp"
+  imageAlt="Juan Lopez standing beside a quiet, misty mountain lake"
+>
+  <section class="hero">
+    <div class="page-shell hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Hi, I’m</p>
+        <h1 class="hero-name">Juan Lopez</h1>
+        <p class="hero-title">Behavior Analyst<br />Researcher &amp; Digital Systems Designer</p>
+        <h2 class="hero-message">I study behavior.<br />I design with <em>people</em> in mind.</h2>
+        <p class="hero-copy__body">
+        <em>Observation</em>. <em>Data collection</em>. <em>Implementation</em>. Great interventions begin with them. So do the digital experiences I design.
+        </p>
+        <div class="hero-actions">
+          <a class="button button--primary" href="/work/">Explore my work <span aria-hidden="true">↗</span></a>
+          <a class="button button--secondary" href="/research/">Read my research <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="portrait-stage">
+        <picture>
+          <source srcset="/images/hero/juan-hero-v2.avif" type="image/avif" />
+          <source srcset="/images/hero/juan-hero-v2.webp" type="image/webp" />
+          <img src="/images/hero/juan-hero-v2.webp" width="1600" height="1000" alt="Juan Lopez standing beside a quiet, misty mountain lake" fetchpriority="high" decoding="async" />
+        </picture>
+        <aside class="insight-panel" aria-label="Guiding principles">
+          <span class="insight-panel__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Z"></path><circle cx="16" cy="16" r="4"></circle></svg>
+          </span>
+          <ul>
+            <li>Clarity lowers uncertainty.</li>
+            <li>Consistency builds trust.</li>
+            <li>Good systems respect choice.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--after-hero">
+    <div class="page-shell research-spotlight">
+      <div>
+        <p class="eyebrow">Research Spotlight</p>
+        <h2>AI <em>(Mis)attribution</em></h2>
+        <p class="research-question">Do people judge the same interactions differently when they believe it was written by <em>Artificial Intelligence?</em></p>
+        <p class="research-summary">
+          When we conducted an online study, participants rated a conversation as more natural when they believed both speakers were human than when they believed one was <em>AI</em>... Even though every condition used the same transcript.
+        </p>
+        <div class="research-tools" role="group" aria-label="Research tools">
+          <span class="tool-label">Qualtrics</span>
+          <span class="tool-label">IBM SPSS</span>
+          <span class="tool-label">Online study</span>
+        </div>
+        <div class="research-actions">
+          <a class="button button--primary" href="/research/ai-misattribution/">View research summary</a>
+          <a class="button button--secondary" href="/research/ai-misattribution/#study-one-design">Explore the method</a>
+        </div>
+      </div>
+      <aside class="research-design-panel" aria-label="Study One design">
+        <dl class="study-meta">
+          <div><dt>Sample</dt><dd>N = 123</dd></div>
+          <div><dt>Conditions</dt><dd>Three</dd></div>
+          <div><dt>Term</dt><dd>Fall 2025</dd></div>
+        </dl>
+        <StudyDiagram />
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--after-card">
+    <div class="page-shell behavior-statement">
+      <div class="behavior-statement__copy">
+        <p class="eyebrow">Behavior Analysis</p>
+        <h2 class="editorial-heading">Data reveals <em>patterns.</em> <em>Care reveals their purpose.</em></h2>
+        <p class="behavior-statement__body">
+          Behavior analysis to me is the most applicable branch of psychology. The principles of reinforcement can be used to build up a model of how people interact with their environments. If behaviors are actions by an organism, why can't thought be one as well? When looking at it from this perspective, human decision-making becomes a lot easier to understand. 
+        </p>
+        <p class="behavior-statement__body">
+          Data does not define the human experience. But it can help us better understand it. Understanding the cause behind behavior allows us to create more ethical interventions, and build more practical systems.
+        </p>
+      </div>
+      <aside class="care-process" aria-label="Behavior analysis process">
+        <ol>
+          <li>Observe</li>
+          <li>Define</li>
+          <li>Measure</li>
+          <li>Analyze</li>
+          <li>Test</li>
+          <li>Refine</li>
+        </ol>
+        <p><em>Patterns</em> become useful when they lead to thoughtful action.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="approach">
+    <div class="page-shell">
+      <SectionIntro
+        eyebrow="ABA-Informed Design Pathway"
+        title="A clearer path from observation to useful change."
+        body="Behavioral ideas are translated into everyday design decisions. Technical terms appear only where they add precision."
+        align="center"
+      />
+      <Pathway />
+      <p class="source-note">
+        The pathway is grounded in behavior-analysis literature on attending, stimulus control, prompting, fading, feedback, and socially meaningful outcomes. It also reflects professional ethics emphasizing dignity, compassion, self-determination, and informed choice. Read the <a href="/approach/">full approach and sources</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="page-shell">
+      <SectionIntro
+        eyebrow="Selected Work"
+        title="Different systems. One careful foundation."
+        body="Research, client services, commerce, and data work shaped around the real decisions people need to make."
+      />
+      <div class="work-grid">
+        {projects.map((project, index) => (
+          <ProjectCard project={project} size={index < 2 ? 'medium' : 'small'} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page-shell ecosystem">
+      <div>
+        <p class="eyebrow">Project Ecosystem</p>
+        <h2>One industry ecosystem. Three different digital problems.</h2>
+      </div>
+      <div class="ecosystem-list">
+        <article>
+          <h3>Sharper Image Services</h3>
+          <p>Centralizing a broad landscaping and land-service offering, including inquiry and payment tasks.</p>
+        </article>
+        <article>
+          <h3>SIS Florida</h3>
+          <p>Explaining sod varieties and installation for residential and commercial audiences.</p>
+        </article>
+        <article>
+          <h3>SIS Asphalt</h3>
+          <p>Creating a deeper service, trust, education, and quote-request architecture.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="page-shell">
+      <SectionIntro
+        eyebrow="Services"
+        title="Careful thinking, carried through to implementation."
+        body="Engagements can begin with research, a website, a commerce system, or a need to make complex information more usable."
+      />
+      <div class="service-grid">
+        {services.map((service) => (
+          <article class="service-card">
+            <span class="service-card__number">{service.number}</span>
+            <h3>{service.title}</h3>
+            <p>{service.copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="page-shell about-preview">
+      <div class="about-preview__visual">
+        <picture>
+          <source srcset="/images/portraits/juan-writing-notebook-v2.avif" type="image/avif" />
+          <source srcset="/images/portraits/juan-writing-notebook-v2.webp" type="image/webp" />
+          <img src="/images/portraits/juan-writing-notebook-v2.webp" width="1122" height="1402" alt="Juan Lopez writing in an open notebook at a light desk" loading="lazy" decoding="async" />
+        </picture>
+      </div>
+      <div class="about-preview__content">
+        <p class="eyebrow">About Juan</p>
+        <h2>Behavior analysis comes first.</h2>
+        <p>
+          My background in behavior analysis shapes how I approach every project. Before I design, build, or interpret data, I look at the conditions influencing how people act, what they need, and where a system may be creating unnecessary friction. Across research, design, development, e-commerce, and data work, I begin with the same principles: observe carefully, define clearly, respect individual differences, communicate with intention, and improve the environment without losing sight of the person.
+        </p>
+
+        <p>
+          I build client websites using SitePad and WordPress, develop Shopify themes, and use Astro to create focused, lightweight websites. Across each platform, I carry the same behavior-informed foundation into research, information design, and digital systems. My goal is not simply to make something functional, but to create experiences that are clear, useful, and responsive to the people who use them.
+        </p>
+        <a class="text-link" href="/about/">Read more about Juan <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

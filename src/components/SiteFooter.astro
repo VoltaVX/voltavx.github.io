@@ -1,0 +1,17 @@
+---
+import { site } from '../config/site';
+import { withBase } from '../lib/links';
+---
+<footer class="container site-footer">
+  <div class="footer-identity">
+    <a class="brand" href={withBase('/')} aria-label={`${site.name} home`}>JL<span class="brand-dot" aria-hidden="true">.</span></a>
+    <p class="muted">© {new Date().getFullYear()} Juan Lopez. Behavior analysis comes first.</p>
+  </div>
+  <nav aria-label="Footer">
+    <a class="text-link" href={withBase("/resume/")}>Résumé</a>
+    <a class="text-link" href={withBase("/privacy/")}>Privacy</a>
+    <a class="text-link" href="https://www.linkedin.com/in/juan-lopez04">LinkedIn</a>
+    <a class="text-link" href={`mailto:${site.email}`}>Email</a>
+    <a class="text-link" href={withBase('/system/')}>Design system</a>
+  </nav>
+</footer>

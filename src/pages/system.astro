@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ActionLink from '../components/ActionLink.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { withBase } from '../lib/links';
+const swatches = [
+  { name: 'Paper', token: '--color-paper', class: 'paper' },
+  { name: 'Ink', token: '--color-ink', class: 'ink' },
+  { name: 'Pale indigo', token: '--color-sage', class: 'sage' },
+  { name: 'Indigo', token: '--color-accent', class: 'accent' }
+];
+---
+<BaseLayout title="Design system" description="The shared colors, type, spacing, and native components that make up the VoltaVX portfolio.">
+  <div class="container section stack system-intro">
+    <p class="eyebrow">The foundation / 01</p>
+    <h1 class="display">Small details.<br/><em>One clear language.</em></h1>
+    <p class="lead">A practical reference for the elements that connect every page. Use the same pieces. Make something entirely your own.</p>
+  </div>
+  <section class="container section divider" id="tokens">
+    <SectionHeading eyebrow="01 / Color" title="A considered palette." description="Quiet surfaces, clear contrast, and a little energy where it counts." />
+    <ul class="grid swatches" role="list">
+      {swatches.map(swatch => <li class="card swatch">
+        <span class:list={['color-sample', swatch.class]} aria-hidden="true"></span>
+        <h3>{swatch.name}</h3>
+        <code>{swatch.token}</code>
+      </li>)}
+    </ul>
+  </section>
+  <section class="container section divider">
+    <SectionHeading eyebrow="02 / Typography" title="Give your words some space." />
+    <div class="type-grid">
+      <div class="card stack"><p class="eyebrow">Display / System sans</p><p class="type-sample">A clear <em>perspective.</em></p><p>System type gives headings a clear shape. Shared sizes and spacing connect the page.</p></div>
+      <div class="card stack"><p class="eyebrow">Body / System sans</p><h3>Keep the details easy to read.</h3><p>Body text uses your device’s native font. Comfortable line height and a clear measure keep longer passages approachable.</p></div>
+    </div>
+  </section>
+  <section class="container section divider">
+    <SectionHeading eyebrow="03 / Elements" title="Useful by default." description="Clear links, comfortable targets, and native controls that work with a keyboard." />
+    <div class="card stack">
+      <h3>Navigation links</h3>
+      <div class="actions"><ActionLink href={withBase('/')}>Back to overview</ActionLink><ActionLink href={withBase('/#contact')} variant="secondary">Let’s talk</ActionLink></div>
+    </div>
+    <div class="disclosures">
+      <h3>Common questions</h3>
+      <details><summary>How do I make the design my own?</summary><p>Change the shared color and spacing tokens, update the site name, and replace the example text with your content.</p></details>
+      <details><summary>Do these controls need JavaScript?</summary><p>The navigation links and these disclosures use native HTML. They work without a script.</p></details>
+    </div>
+  </section>
+  <section class="container section divider">
+    <SectionHeading eyebrow="04 / Rhythm" title="A little breathing room." description="Spacing follows a shared scale. The 8px base step makes the elements feel related." />
+    <ul class="spacing-list" role="list"><li><span class="spacing-marker s1" aria-hidden="true"></span><span>8px / Small details</span></li><li><span class="spacing-marker s2" aria-hidden="true"></span><span>16px / Related elements</span></li><li><span class="spacing-marker s4" aria-hidden="true"></span><span>32px / Component padding</span></li><li><span class="spacing-marker s8" aria-hidden="true"></span><span>64px / Larger groups</span></li></ul>
+    <p class="muted spacing-note">These are default values at a 16px root font size. Relative units adapt when text size changes.</p>
+  </section>
+</BaseLayout>
+<style>
+  @layer components {
+    .system-intro h1 { max-inline-size: 16ch; }
+    .swatches, .spacing-list { list-style: none; padding: 0; }
+    .swatch { padding: var(--space-3); }
+    .color-sample { display: block; block-size: 8rem; border-radius: var(--radius-sm); margin-block-end: var(--space-3); border: 1px solid var(--color-line); }
+    .paper { background: var(--color-paper); } .ink { background: var(--color-ink); } .sage { background: var(--color-sage); } .accent { background: var(--color-accent); }
+    .swatch code { display: block; margin-block-start: var(--space-1); font-size: 0.85rem; color: var(--color-muted); }
+    .type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--space-3); }
+    .type-sample { font-family: var(--font-display); font-size: clamp(2rem, 1rem + 2vw, 3rem); line-height: 1.2; color: var(--color-ink); }
+    .disclosures { margin-block-start: var(--space-6); max-inline-size: 48rem; }
+    .disclosures h3 { margin-block-end: var(--space-2); font-size: 1.5rem; }
+    details { border-block-end: 1px solid var(--color-line); }
+    summary { font-weight: 600; }
+    details p { padding-block-end: var(--space-3); color: var(--color-muted); }
+    .spacing-list { display: grid; gap: var(--space-2); }
+    .spacing-list li { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-2); }
+    .spacing-marker { display: block; block-size: var(--space-2); background: var(--color-ink); }
+    .s1 { inline-size: var(--space-1); } .s2 { inline-size: var(--space-2); } .s4 { inline-size: var(--space-4); } .s8 { inline-size: var(--space-8); }
+    .spacing-note { margin-block-start: var(--space-3); max-inline-size: 65ch; }
+  }
+</style>

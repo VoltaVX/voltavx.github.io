@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary';
+}
+const { href, variant = 'primary' } = Astro.props;
+---
+<a href={href} class:list={['action-link', variant]}><slot /><span aria-hidden="true">↗</span></a>
+
+<style>
+  @layer components {
+    .action-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5em; min-block-size: 3.25rem; padding: 0.85em 1.35em; border: 1px solid var(--color-ink); border-radius: var(--radius-pill); font-weight: 600; line-height: 1.4; text-decoration: none; }
+    .primary { background: var(--color-ink); color: var(--color-white); }
+    .secondary { background: transparent; color: var(--color-ink); }
+    @media (hover: hover) {
+      .primary:hover { background: var(--color-hover); }
+      .secondary:hover { background: var(--color-sage); }
+    }
+    @media (forced-colors: active) { .action-link { border-color: LinkText; } }
+  }
+</style>

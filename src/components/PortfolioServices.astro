@@ -1,0 +1,60 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { withBase } from '../lib/links';
+
+const services = [
+  {
+    number: '01',
+    title: 'Behavioral Research & Strategy',
+    description: 'Research that identifies patterns, barriers, needs, and opportunities before design begins.',
+    action: 'Discuss research',
+    icon: 'M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm4.5 10.5L21 21M7 10h6m-3-3v6',
+  },
+  {
+    number: '02',
+    title: 'Web Design & Development',
+    description: 'Responsive websites built around clarity, accessibility, performance, and purposeful structure.',
+    action: 'Discuss a website',
+    icon: 'M4 4h16v16H4V4Zm0 5h16M8 6.5h.01M11 6.5h.01M8 13l-2 2 2 2m8-4 2 2-2 2',
+  },
+  {
+    number: '03',
+    title: 'Commerce & Digital Systems',
+    description: 'Shopify theme development and operational systems that make products, services, and decisions easier to understand.',
+    action: 'Discuss a commerce system',
+    icon: 'M5 8h14l1 12H4L5 8Zm3 0V6a4 4 0 0 1 8 0v2M9 12h.01M15 12h.01',
+  },
+  {
+    number: '04',
+    title: 'Data & Context Systems',
+    description: 'Tools that organize information, reveal patterns, and support more informed decisions.',
+    action: 'Discuss a data system',
+    icon: 'M4 20h16M7 16v-4m5 4V8m5 8V4M5 6l4-2 4 2 6-3',
+  },
+];
+---
+
+<section id="services" class="section section-related container services-section" aria-label="Services">
+  <SectionHeading
+    eyebrow="Services"
+    title="Careful thinking, carried through to implementation."
+    description="Engagements can begin with research, a website, a commerce system, or a need to make complex information more usable."
+  />
+  <div class="services-grid">
+    {services.map((service) => (
+      <article class="card service-card">
+        <div class="service-card-marker">
+          <p class="eyebrow">{service.number}</p>
+          <svg class="service-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d={service.icon} />
+          </svg>
+        </div>
+        <h3>{service.title}</h3>
+        <p>{service.description}</p>
+        <a class="text-link" href={withBase('/contact/')}>
+          {service.action}<span aria-hidden="true"> ↗</span>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>

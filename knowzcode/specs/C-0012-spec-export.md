@@ -1,0 +1,7 @@
+# C-0012 — Consolidate as-built UI authority and export Astro framework
+
+LIGHT documentation/export change; no runtime UI behavior or dependency changes. User approves current design/adaptability and requests primary/component specs and new framework copy.
+
+VERIFY: main and all12 component specs express final implemented rules without obsolete override chains; locked five-stage words preserved. Primary lookup/catalog and agent entry points route to one authority, current specs outrank history. Capture pre-consolidation files under reference/.
+VERIFY: export includes current source/components/styles/assets, specs, tests, GitHub Pages and agent/KnowzCode harnesses. Retain public portfolio as working reference. Exclude Git/node_modules/build/test outputs, private environment files/credentials and Site identity. Export-only generic origin, neutral bootstrap state and setup instructions are documented; live Site source/config remain untouched. Do not discard licenses or public source provenance.
+VERIFY: archive manifest hashes match extracted files. Extracted copy passes UI contract, types/unit tests, root and /preview/ static builds/audits; no runtime source change relative shipped implementation beyond declared export configuration normalization. Review actual docs/source agreement and package contents independently. Browser visual acceptance remains pending, do not recertify UI. Save and deliver ZIP. No ADR needed; revert dedicated commit for docs rollback.
